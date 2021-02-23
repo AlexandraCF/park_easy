@@ -1,11 +1,11 @@
 .onboarding-caroussel {
   width: 500px;
   margin: 0 auto;
+  height: 300px;
 }
 
 .onboarding-caroussel img {
   width: 500px;
-  object-fit: cover;
   height: 300px;
 }
 
@@ -21,4 +21,10 @@ h1, h5 {
 
 .fas {
   color: #1d3557;
+}
+td {
+  text-align: center;
+}
+.icons-onboarding{
+  justify-content: center;
 }
