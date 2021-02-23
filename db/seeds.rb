@@ -61,14 +61,16 @@ puts "Creating parking spots..."
 
 lots["records"].each do |lot|
 	places = lot["fields"]["plarel"]
-	ParkingSpot.create(address: "#{lot["fields"]["typevoie"]} #{lot["fields"]["nomvoie"]}",
+  print "."
+	spot = ParkingSpot.new(address: "#{lot["fields"]["typevoie"]} #{lot["fields"]["nomvoie"]}",
 										 latitude: lot["fields"]["geo_shape"]["coordinates"][1],
 										 longitude: lot["fields"]["geo_shape"]["coordinates"][0],
 										 total_places: lot["fields"]["plarel"],
 										 available_places: (0..places).to_a.sample
 										 )
+  spot.save(validate: false)
 end
-
+puts
 puts "Finished!"
 
 
