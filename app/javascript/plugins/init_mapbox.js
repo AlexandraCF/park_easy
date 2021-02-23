@@ -1,6 +1,19 @@
 import mapboxgl from 'mapbox-gl';
 import MapboxGeocoder from '@mapbox/mapbox-gl-geocoder';
 
+// Initialize the geolocate control.
+// var geolocate = new mapboxgl.GeolocateControl({
+//   positionOptions: {
+//     enableHighAccuracy: true
+//   },
+//   trackUserLocation: true
+// });
+// // Add the control to the map.
+// map.addControl(geolocate);
+// map.on('load', function() {
+//   geolocate.trigger();
+// });
+
 const buildMap = (mapElement) => {
   mapboxgl.accessToken = mapElement.dataset.mapboxApiKey;
   return new mapboxgl.Map({
@@ -12,10 +25,19 @@ const buildMap = (mapElement) => {
 const addMarkersToMap = (map, markers) => {
   markers.forEach((marker) => {
     const popup = new mapboxgl.Popup().setHTML(marker.infoWindow);
-      new mapboxgl.Marker()
-        .setLngLat([ marker.lng, marker.lat ])
-        .setPopup(popup)
-        .addTo(map);
+    const element = document.createElement('pin');
+      element.className = 'marker';
+      // element.style.backgroundImage = `url('${marker.image_url}')`;
+      element.style.backgroundSize = 'contain';
+      element.style.width = '25px';
+      element.style.height = '25px';
+      // element.style.innerText = `'${parkingspot.available_places}'`;
+        new mapboxgl.Marker({ "color": "#1D3557" })
+          .setLngLat([ marker.lng, marker.lat ])
+          .setPopup(popup)
+          .addTo(map);
+      // const textplaces = new mapboxgl.Popup().setHTML(marker.infoWindow);
+      //    new mapboxg.
   });
 };
 
