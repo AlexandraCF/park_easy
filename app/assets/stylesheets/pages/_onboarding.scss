@@ -3,8 +3,22 @@
   margin: 0 auto;
 }
 
-img {
-  width: 200px;
+.onboarding-caroussel img {
+  width: 500px;
   object-fit: cover;
   height: 300px;
+}
+
+h1, h5 {
+  color: #457b9d;
+  font-weight: bold;
+  font-size: 18px;
+  text-align: center;
+}
+ h1{
+   font-size: 48px;
+ }
+
+.fas {
+  color: #1d3557;
 }
