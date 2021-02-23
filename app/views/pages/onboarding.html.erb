@@ -1,17 +1,17 @@
-<div class="container">
+<div class="container-onboarding">
+<%# <div class="titleonboarding">
   <h1>Park easy</h1>
+  </div> %>
   <div class="onboarding-caroussel">
     <div> <%= image_tag "undraw_Map_dark_k9pw.svg" %>
-    <h5>Find a parking spot around you in the street </h5></div>
+    <h3>Find a parking spot around you in the street </h3></div>
     <div> <%= image_tag "undraw_navigator_a479.svg" %>
-    <h5>Get directions to this spot</h5></div>
+    <h3>Get directions to this spot</h3></div>
     <div> <%= image_tag "undraw_my_location_f9pr.svg"%>
-    <h5>Help people and set your spot as occupied or free</h5></div>
+    <h3>Help people and set your spot as occupied or free</h3></div>
   </div>
   <div class="linkonboarding">
-    <div class="row">
       <%= link_to "Create account", new_user_registration_path, class: "btn btn-create" %>
       <%= link_to "Log In", new_user_session_path, class: "btn btn-login" %>
-    </div>
   </div>
 </div>
