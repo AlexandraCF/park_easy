@@ -25,19 +25,22 @@ const buildMap = (mapElement) => {
 const addMarkersToMap = (map, markers) => {
   markers.forEach((marker) => {
     const popup = new mapboxgl.Popup().setHTML(marker.infoWindow);
-    const element = document.createElement('pin');
-      element.className = 'marker';
-      element.style.backgroundImage = `url('${marker.image_url}')`;
-      element.style.backgroundSize = 'contain';
-      element.style.width = '25px';
-      element.style.height = '25px';
-      element.innerText = `${marker.available_spaces}`;
-      element.style.color = 'white';
+    if (marker.available_spaces > 0) {
+      const element = document.createElement('pin');
+        element.className = 'marker';
+        element.style.backgroundImage = `url('${marker.image_url}')`;
+        element.style.backgroundSize = 'contain';
+        element.style.width = '15px';
+        element.style.height = '20px';
+        element.innerText = `${marker.available_spaces}`;
+        element.style.textAlign = "center";
+        element.style.color = 'white';
 
         new mapboxgl.Marker(element)
           .setLngLat([ marker.lng, marker.lat ])
           .setPopup(popup)
           .addTo(map);
+    };
   });
 };
 
