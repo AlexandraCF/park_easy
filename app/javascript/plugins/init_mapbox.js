@@ -31,7 +31,7 @@ const addMarkersToMap = (map, markers) => {
       element.style.backgroundSize = 'contain';
       element.style.width = '25px';
       element.style.height = '25px';
-      // element.style.innerText = `'${parkingspot.available_places}'`;
+      // element.innerText = `'${parkingspot.available_places}'`;
         new mapboxgl.Marker({ "color": "#1D3557" })
           .setLngLat([ marker.lng, marker.lat ])
           .setPopup(popup)
@@ -56,7 +56,26 @@ const initMapbox = () => {
     fitMapToMarkers(map, markers);
     map.addControl(new MapboxGeocoder({ accessToken: mapboxgl.accessToken,
                                       mapboxgl: mapboxgl }));
+    map.addControl(
+      new mapboxgl.GeolocateControl({
+      positionOptions: {
+        enableHighAccuracy: true
+      },
+        trackUserLocation: true
+      })
+    );
   }
 };
+// Geolocalization
+//   mapboxgl.accessToken = 'pk.eyJ1IjoiZWRvdWFyZGIiLCJhIjoiY2trcW9ydWo5Mzd4ODJvcXRhOHNoYjJqMyJ9.oZVnOB9WQMAt5ZpOypiv7Q';
+// var map = new mapboxgl.Map({
+//   container: 'map', // container id
+//   style: 'mapbox://styles/mapbox/streets-v11',
+//   center: [-96, 37.8], // starting position
+//   zoom: 3 // starting zoom
+// });
+
+// Add geolocate control to the map.
+
 
 export { initMapbox };
