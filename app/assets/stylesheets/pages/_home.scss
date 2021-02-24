@@ -1,4 +1,12 @@
-.banner-1 h1, .banner-1 h3, .banner-1 h6 {
+.banner-1 h1, .banner-1 h3 {
+  color: #fafafa;
+  margin: 0;
+  text-shadow: 2px 2px 6px #000;
+  text-align: center;
+}
+
+.banner-2 h2 {
+  color: #fafafa;
   margin: 0;
   text-shadow: 2px 2px 6px #000;
   text-align: center;
@@ -7,28 +15,29 @@
 .banner-1 {
   z-index: 100;
   color: white;
-  background: linear-gradient(-45deg, #1d3557, #1b395c, #115770);
+  background: linear-gradient(-45deg, #1d3557, #1b395c, #1b2d33);
   /*background: url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/409269/banner-flowers.jpg') top left/cover no-repeat;*/
   height: 120px;
   display: flex;
   justify-content: center;
   align-items: center;
+  border: none;
 }
 
 .banner-2 {
   z-index: 200;
   color: white;
-  background: linear-gradient(45deg, #1d3557, #1b395c, #115770);
+  background: linear-gradient(-45deg, #1d3557, #1b395c, #1b2d33);
   /*background: url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/409269/banner-flowers.jpg') top left/cover no-repeat;*/
-  height: 12em;
+  height: 10em;
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
 
-$purp: #b82b21;
-$lightpurp: #8d9eff;
+$purp: #e75132;
+$lightpurp: #0d28c2b4;
 
 // Reset
 * {
@@ -36,7 +45,7 @@ $lightpurp: #8d9eff;
   padding: 0;
   margin: 0;
   box-sizing: border-box;
-  transition: all 0.25s cubic-bezier(.37,0,.45,.99);
+  transition: all 0.30s cubic-bezier(.27,0,.35,.99);
   
   &:before,
   &:after {
@@ -45,6 +54,12 @@ $lightpurp: #8d9eff;
   
 }
 
+.img-4 {
+  bottom: 48%;
+  position: absolute;
+  transform: rotate(270deg);
+  width: 300px;
+}
 img {
   margin-left: 35%;
   margin-bottom: -30%;
@@ -63,15 +78,13 @@ img {
 
 #btn-started {
   position:absolute;
-  top: 60%;
-  bottom: 33%;
+  bottom: 30%;
   right: 10px;
   height:3.5%;
   width: 28%;
   justify-content: center;
   text-align: center;
-
-  background-color: #1d3557;
+  background-color: #030f20;
   border-radius: 50px;
   box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
   color: #a8dadc;
@@ -137,7 +150,7 @@ img {
     top: -102px; // Hide the empty top reset by moving the object up
     width: 100%;
     transform: translateY(-550px);
-    animation: driving 1000ms linear 0ms infinite;
+  
   }
   &__route {
     width: 2em;
@@ -160,8 +173,7 @@ img {
     }
   }
   &__fade {
-    // The fade at the top helps hide any crimes (it's pretty seamless without it though)
-    background-image: linear-gradient( to bottom,  $lightpurp 10%, rgba($lightpurp, 0) 100%);
+    background: linear-gradient(-45deg, #d3ecf5);
     position: absolute;
     top: 0;
     left: 0;
@@ -186,7 +198,7 @@ img {
     transform: translateX(-50%);
     box-shadow: 0 0.125em 10px 3px rgba(darken($purp, 30%), 0.25);
     &:after {
-      // Arrow
+
       content: '';
       border-left: 1.5em solid transparent;
       border-right: 1.5em solid transparent;
