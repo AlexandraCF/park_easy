@@ -4,7 +4,11 @@
     <h4>Find the best parking spot</h4>
     <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b3/Map_of_Paris_and_its_inner_ring_d%C3%A9partements.svg/1002px-Map_of_Paris_and_its_inner_ring_d%C3%A9partements.svg.png" alt="">
   </div>
-  <%= link_to "Get started", onboarding_path, id:"btn-started" %>
+  <% if user_signed_in? %>
+    <%= link_to "Get started", parking_spots_path, id:"btn-started"%>
+  <% else %>
+    <%= link_to "Get started", onboarding_path, id:"btn-started" %>
+  <% end %>
 </div>
 
   
