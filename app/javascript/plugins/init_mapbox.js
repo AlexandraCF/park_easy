@@ -27,17 +27,17 @@ const addMarkersToMap = (map, markers) => {
     const popup = new mapboxgl.Popup().setHTML(marker.infoWindow);
     const element = document.createElement('pin');
       element.className = 'marker';
-      // element.style.backgroundImage = `url('${marker.image_url}')`;
+      element.style.backgroundImage = `url('${marker.image_url}')`;
       element.style.backgroundSize = 'contain';
       element.style.width = '25px';
       element.style.height = '25px';
-      // element.innerText = `'${parkingspot.available_places}'`;
-        new mapboxgl.Marker({ "color": "#1D3557" })
+      element.innerText = `'${marker.available_spaces}'`;
+      element.style.color = 'white';
+
+        new mapboxgl.Marker(element)
           .setLngLat([ marker.lng, marker.lat ])
           .setPopup(popup)
           .addTo(map);
-      // const textplaces = new mapboxgl.Popup().setHTML(marker.infoWindow);
-      //    new mapboxg.
   });
 };
 
