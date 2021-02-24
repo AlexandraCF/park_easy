@@ -1,212 +1,67 @@
-.banner-1 h1, .banner-1 h3 {
+.banner-1 h1 {
+  padding-bottom: 321px;
+  font-size: 350%;
   color: #fafafa;
   margin: 0;
   text-shadow: 2px 2px 6px #000;
   text-align: center;
 }
 
-.banner-2 h2 {
+.banner-1 h4 {
+  padding-bottom: 10px;
   color: #fafafa;
   margin: 0;
   text-shadow: 2px 2px 6px #000;
   text-align: center;
+}
+
+.banner-text {
+  margin-top: -39%;
 }
 
 .banner-1 {
-  z-index: 100;
+  width: 100%;
+  position: absolute;
+  z-index: 1000;
   color: white;
-  background: linear-gradient(-45deg, #1d3557, #1b395c, #1b2d33);
-  /*background: url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/409269/banner-flowers.jpg') top left/cover no-repeat;*/
-  height: 120px;
+  background-color: #1d3557;
+  /*background: linear-gradient(-45deg, #1d3557, #1b395c, #1b2d33);*/
+  height: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
   border: none;
 }
 
-.banner-2 {
-  z-index: 200;
-  color: white;
-  background: linear-gradient(-45deg, #1d3557, #1b395c, #1b2d33);
-  /*background: url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/409269/banner-flowers.jpg') top left/cover no-repeat;*/
-  height: 10em;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-
-$purp: #e75132;
-$lightpurp: #0d28c2b4;
-
-// Reset
-* {
-  z-index: 50;
-  padding: 0;
-  margin: 0;
-  box-sizing: border-box;
-  transition: all 0.30s cubic-bezier(.27,0,.35,.99);
-  
-  &:before,
-  &:after {
-      box-sizing: inherit;
-  }
-  
-}
-
-.img-4 {
-  bottom: 48%;
-  position: absolute;
-  transform: rotate(270deg);
-  width: 300px;
-}
 img {
-  margin-left: 35%;
-  margin-bottom: -30%;
-  max-width: 30%;
-  height: auto;
+  top: 0;
+  transform: scale(1.16);
+  position: fixed;
+  /* margin-bottom: 500px; */
+  opacity: 0.089;
+  z-index: 500;
+  height: 283%;
+  width: 185%;
+  -o-object-fit: cover;
+  object-fit: cover;
+  /* bottom: 0; */
+  right: 0;
+  left: 0;
 }
 
-.hero__title img {
-  margin-bottom: -35%;
-  margin-left: -190px;
-  margin-top: -350px;
-  margin-right: -200px;
-  max-width: 20%;
-  height: auto;
-}
 
 #btn-started {
-  position:absolute;
-  bottom: 30%;
-  right: 10px;
-  height:3.5%;
-  width: 28%;
+  position: absolute;
+  bottom: 25%;
+  /* right: 10px; */
+  /*height: 6.5%;*/
+  width: 84%;
   justify-content: center;
   text-align: center;
   background-color: #030f20;
   border-radius: 50px;
-  box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
   color: #a8dadc;
+  font-size: 173%;
+  box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
 }
 
-
-// Defualt Styling
-
-
-@keyframes driving {
-    0% {
-        transform: translateY(-650px);
-    }
-
-    100% {
-        transform: translateY(0);
-    }
-}
-
-// Demo Styles
-// Generic Hero
-.hero {
-  z-index: 20;
-  &__title {
-    padding: 3em 2rem 16rem;
-    text-align: center;
-    color: darken($purp, 50%);
-    position: relative;
-    z-index: 80;
-  }
-}
-
-// GPS Hero
-.gps-bg {
-  background-color: white;
-  position: relative;
-  perspective: 200px;
-  overflow: hidden;
-  &:after {
-    // Angled bottom
-    content: '';
-    background-color: #fafafa;
-    position: absolute;
-    width: 200%;
-    height: 5em;
-    bottom: 0;
-    transform: skewY(-3deg);
-  }
-  // The nuts and bolts of making this work
-  &__guts {
-    position: absolute;
-    transform: rotateX(40deg);
-    width: calc(100% + 1000px); // This makes extra space to overflow the edges with filled map
-    height: 70%;
-    left: -500px; // Re-centers the container
-  }
-  &__bg {
-    height: 1500px;
-    background-image: url(http://www.rastrac.com/hubfs/roads.svg);
-    background-position: 100%;
-    background-size: 45%;
-    position: absolute;
-    top: -102px; // Hide the empty top reset by moving the object up
-    width: 100%;
-    transform: translateY(-550px);
-  
-  }
-  &__route {
-    width: 2em;
-    background-color: #fff;
-    position: absolute;
-    top: -162px;
-    bottom: -162px;
-    left: 50%;
-    transform: translateX(-50%);
-    box-shadow: 0 0 13px 5px rgba(darken($purp, 30%), 0.25);
-    &:after {
-      content: '';
-      width: 60%;
-      background-color: $purp;
-      position: absolute;
-      top: 0;
-      bottom: 35%;
-      left: 50%;
-      transform: translateX(-50%);
-    }
-  }
-  &__fade {
-    background: linear-gradient(-45deg, #d3ecf5);
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 120%;
-    z-index: 10;
-  }
-  &__marker {
-    height: 5em;
-    width: 6em;
-    background-color: #fff;
-    // 3D lip
-    border:{
-      right: 1px solid #ddd;
-      bottom: 3px solid #ddd;
-      left: 1px solid #ddd;
-      radius: 100%;
-    }
-    position: absolute;
-    top: 70%;
-    left: 50%;
-    transform: translateX(-50%);
-    box-shadow: 0 0.125em 10px 3px rgba(darken($purp, 30%), 0.25);
-    &:after {
-
-      content: '';
-      border-left: 1.5em solid transparent;
-      border-right: 1.5em solid transparent;
-      border-bottom: 3em solid $purp;
-      position: absolute;
-      top: 20%;
-      left: 50%;
-      transform: translateX(-50%);
-    }
-  }
-}
