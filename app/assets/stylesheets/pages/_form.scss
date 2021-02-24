@@ -2,11 +2,20 @@
 	h2 {
 		color: #F1F9EE;
 		text-align: center;
+		font-weight: bold;
 	}
 	background-color: #1E3557;
 	height: 100vh;
 	padding: 50px 20px;
 	color: #F1F9EE;
+	label {
+	 font-size: 17px;
+	 color: #F1F9EE;
+	}
+}
+
+.form-control {
+	border-radius: 4px;
 }
 
 .login-form {
