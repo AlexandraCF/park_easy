@@ -17,7 +17,7 @@
       <div class="menu-toggler"><i class="fas fa-bars"></i></div>
     <% end %>
 
-    <%= render 'shared/dashboard' %>
+    <%= render 'shared/dashboard' if current_user %>
     <%#= render 'shared/navbar' %>
     <%#= render 'shared/flashes' %>
     <%= yield %>

@@ -1,4 +1,27 @@
 <div class="card-test-collapse">
 	<div class="menu-close-toggler"><i class="fas fa-times"></i></div>
-	Dashboard
+	<div class="dashboard-container">
+	  <div class="intro-dashboard">
+	    <%= image_tag "Alexandra.jpg", class: "avatar-bordered", alt: "avatar-bordered" %>
+	    <h2><%= " #{current_user.first_name}"" " "#{current_user.last_name}" %></h2>
+	    <p><%= current_user.username %></p>
+	  </div>
+	  <div class="email-dashboard">
+	    <p><%= current_user.email %></p>
+	  </div>
+	  <div class="home-dashboard">
+	    <p><i class="fas fa-home"></i>    Home :</p>
+	    <%= current_user.address %>
+	  </div>
+	  <div class="favorites-dashboard">
+	    <p><i class="fas fa-home"></i>    Favourites :</p>
+	    <%= current_user.username %>
+	  </div>
+
+	  <div class="logout-dashboard">
+	    <%= link_to "Log out", destroy_user_session_path, class:"btn btn-logout", :method => :delete %>
+	  </div>
+	</div>
+	 
+	 <%# link to current_user.address , vers index + parametre pour current localisation %>
 </div>
