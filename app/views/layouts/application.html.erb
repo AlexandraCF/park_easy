@@ -14,15 +14,10 @@
 
   <body>
     <% if controller_name == 'parking_spots' %>
-      <div class="btn-menu" data-toggle="collapse" data-target="#collapseExample"><i class="fas fa-bars"></i></div>
+      <div class="btn-menu"><i class="fas fa-bars"></i></div>
     <% end %>
 
-    <div class="collapse" id="collapseExample">
-      <div class="card-test-collapse">
-        Some placeholder content for the collapse component. This panel is hidden by default but revealed when the user activates the relevant trigger.
-        <div class="btn-menu" data-toggle="collapse" data-target="#collapseExample"><i class="fas fa-times"></i></div>
-      </div>
-    </div>
+    <%= render 'shared/dashboard' %>
 
     <%#= render 'shared/navbar' %>
     <%#= render 'shared/flashes' %>
