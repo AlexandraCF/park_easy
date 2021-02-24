@@ -1,0 +1,11 @@
+<div class="dashboard-container">
+  <div class="intro-dashboard">
+    <%= image_tag "Alexandra.jpg", class: "avatar-bordered", alt: "avatar-bordered" %>
+    <h2><%= "Hello #{@user.first_name}" %></h2>
+  </div>
+  <div class="info-dashboard">
+    <p><%= @user.email %></p>
+    <p>Your address :</p>
+    <%= @user.address %>
+  </div>
+</div>
