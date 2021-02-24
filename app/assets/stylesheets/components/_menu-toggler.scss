@@ -11,7 +11,7 @@
 
 // Background color white
 
-.btn-menu {
+.menu-toggler {
   color: #1E3557;
   border-radius: 5px;
   font-size: 33px;
@@ -23,22 +23,28 @@
   z-index: 2;
 }
 
-.btn-close-menu {
+.menu-close-toggler {
   color: #1E3557;
   font-size: 33px;
   position: absolute;
   top: 10px;
-  left: 16px;
+  right: 16px;
   z-index: 2;
   padding: 0px 12px;	
 }
 
 .card-test-collapse {
-	position: absolute;
-	background-color:white;
-	z-index: 2;
-	height: 100vh;
-	width: 100%;
+  position: absolute;
+  left: -90%;
+  z-index: 2;
+  background-color: white;
+  width: 90%;
+  height: 100vh;
+  transition: 300ms left cubic-bezier(0.77, 0, 0.175, 1);
+}
+
+.active {
+  left: 0;
 }
 
 #map {
