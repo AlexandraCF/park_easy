@@ -13,7 +13,11 @@
   </head>
 
   <body>
+    <% if controller_name == 'parking_spots' %>
+      <div class="menu-toggler"><i class="fas fa-bars"></i></div>
+    <% end %>
 
+    <%= render 'shared/dashboard' %>
     <%#= render 'shared/navbar' %>
     <%#= render 'shared/flashes' %>
     <%= yield %>
