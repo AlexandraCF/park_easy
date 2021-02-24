@@ -1,21 +1,17 @@
-<%# <div class="onboarding-caroussel">
-  <div><%= image_tag "https://images.unsplash.com/photo-1546881963-ac8d67aee789?ixid=MXwxMjA3fDB8MHx0b3BpYy1mZWVkfDJ8NnNNVmpUTFNrZVF8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" %></div>
-  <div><%#= image_tag "https://images.unsplash.com/photo-1510279770292-4b34de9f5c23?ixid=MXwxMjA3fDB8MHx0b3BpYy1mZWVkfDR8NnNNVmpUTFNrZVF8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" %></div>
-  <div><%#= image_tag "https://images.unsplash.com/photo-1537346439163-eafb59bdc400?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1936&q=80" %></div>
-</div>
-
-<div class="container">
+<div class="container-onboarding">
+<%# <div class="titleonboarding">
   <h1>Park easy</h1>
+  </div> %>
   <div class="onboarding-caroussel">
     <div> <%= image_tag "undraw_Map_dark_k9pw.svg" %>
-    <h5>Find a parking spot around you in the street </h5></div>
+    <h3>Find a parking spot around you in the street </h3></div>
     <div> <%= image_tag "undraw_navigator_a479.svg" %>
-    <h5>Get directions to this spot</h5></div>
+    <h3>Get directions to this spot</h3></div>
     <div> <%= image_tag "undraw_my_location_f9pr.svg"%>
-    <h5>Help people and set your spot as occupied or free</h5></div>
+    <h3>Help people and set your spot as occupied or free</h3></div>
   </div>
   <div class="linkonboarding">
-    <%= link_to "Create account", new_user_registration_path %>
-    <%= link_to "Log In", new_user_session_path %>
+      <%= link_to "Create account", new_user_registration_path, class: "btn btn-create" %>
+      <%= link_to "Log In", new_user_session_path, class: "btn btn-login" %>
   </div>
 </div>
