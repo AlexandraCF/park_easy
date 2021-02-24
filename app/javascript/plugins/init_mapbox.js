@@ -25,19 +25,22 @@ const buildMap = (mapElement) => {
 const addMarkersToMap = (map, markers) => {
   markers.forEach((marker) => {
     const popup = new mapboxgl.Popup().setHTML(marker.infoWindow);
-    const element = document.createElement('pin');
-      element.className = 'marker';
-      // element.style.backgroundImage = `url('${marker.image_url}')`;
-      element.style.backgroundSize = 'contain';
-      element.style.width = '25px';
-      element.style.height = '25px';
-      // element.style.innerText = `'${parkingspot.available_places}'`;
-        new mapboxgl.Marker({ "color": "#1D3557" })
+    if (marker.available_spaces > 0) {
+      const element = document.createElement('pin');
+        element.className = 'marker';
+        element.style.backgroundImage = `url('${marker.image_url}')`;
+        element.style.backgroundSize = 'contain';
+        element.style.width = '15px';
+        element.style.height = '20px';
+        element.innerText = `${marker.available_spaces}`;
+        element.style.textAlign = "center";
+        element.style.color = 'white';
+
+        new mapboxgl.Marker(element)
           .setLngLat([ marker.lng, marker.lat ])
           .setPopup(popup)
           .addTo(map);
-      // const textplaces = new mapboxgl.Popup().setHTML(marker.infoWindow);
-      //    new mapboxg.
+    };
   });
 };
 
@@ -56,7 +59,26 @@ const initMapbox = () => {
     fitMapToMarkers(map, markers);
     map.addControl(new MapboxGeocoder({ accessToken: mapboxgl.accessToken,
                                       mapboxgl: mapboxgl }));
+    map.addControl(
+      new mapboxgl.GeolocateControl({
+      positionOptions: {
+        enableHighAccuracy: true
+      },
+        trackUserLocation: true
+      })
+    );
   }
 };
+// Geolocalization
+//   mapboxgl.accessToken = 'pk.eyJ1IjoiZWRvdWFyZGIiLCJhIjoiY2trcW9ydWo5Mzd4ODJvcXRhOHNoYjJqMyJ9.oZVnOB9WQMAt5ZpOypiv7Q';
+// var map = new mapboxgl.Map({
+//   container: 'map', // container id
+//   style: 'mapbox://styles/mapbox/streets-v11',
+//   center: [-96, 37.8], // starting position
+//   zoom: 3 // starting zoom
+// });
+
+// Add geolocate control to the map.
+
 
 export { initMapbox };
