@@ -1,11 +1,24 @@
 <div class="dashboard-container">
   <div class="intro-dashboard">
     <%= image_tag "Alexandra.jpg", class: "avatar-bordered", alt: "avatar-bordered" %>
-    <h2><%= "Hello #{@user.first_name}" %></h2>
+    <h2><%= " #{@user.first_name}"" " "#{@user.last_name}" %></h2>
+    <p><%= @user.username %></p>
   </div>
-  <div class="info-dashboard">
+  <div class="email-dashboard">
     <p><%= @user.email %></p>
-    <p>Your address :</p>
+  </div>
+  <div class="home-dashboard">
+    <p><i class="fas fa-home"></i>    Home :</p>
     <%= @user.address %>
   </div>
+  <div class="favorites-dashboard">
+    <p><i class="fas fa-home"></i>    Favourites :</p>
+    <%= @user.username %>
+  </div>
+
+  <div class="logout-dashboard">
+    <%= link_to "Log out", destroy_user_session_path, class:"btn btn-logout", :method => :delete %>
+  </div>
 </div>
+ 
+ <%# link to @user.address , vers index + parametre pour current localisation %>
