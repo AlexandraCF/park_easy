@@ -1,10 +1,6 @@
 const toggler = document.querySelector('.menu-toggler');
 const menu    = document.querySelector('.card-test-collapse');
 const closeToggler = document.querySelector('.menu-close-toggler');
-/*
- * Toggles on and off the 'active' class on the menu
- * and the toggler button.
- */
 
 const dashboardToggle = () => { 
 	toggler.addEventListener('click', () => {
