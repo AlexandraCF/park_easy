@@ -31,7 +31,7 @@ const addMarkersToMap = (map, markers) => {
       element.style.backgroundSize = 'contain';
       element.style.width = '25px';
       element.style.height = '25px';
-      element.innerText = `'${marker.available_spaces}'`;
+      element.innerText = `${marker.available_spaces}`;
       element.style.color = 'white';
 
         new mapboxgl.Marker(element)
