@@ -5,4 +5,5 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
   belongs_to :parking_spot, optional: true
   has_one_attached :photo
+  has_many :users
 end
