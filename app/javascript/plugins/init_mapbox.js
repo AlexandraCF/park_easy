@@ -18,7 +18,9 @@ const buildMap = (mapElement) => {
   mapboxgl.accessToken = mapElement.dataset.mapboxApiKey;
   return new mapboxgl.Map({
     container: 'map',
-    style: 'mapbox://styles/mapbox/streets-v11'
+    style: 'mapbox://styles/mapbox/streets-v11',
+    // center: [2.3820137, 48.8654838],
+    // zoom: 9
   });
 };
 
@@ -60,13 +62,15 @@ const initMapbox = () => {
     const markers = JSON.parse(mapElement.dataset.markers);
     addMarkersToMap(map, markers);
     // init auto geolocalisation user
-    fitMapToMarkers(map, markers);
+    // fitMapToMarkers(map, markers);
+
     const geolocate = new mapboxgl.GeolocateControl({
       positionOptions: {
         enableHighAccuracy: true
       },
         trackUserLocation: true
     });
+
 
 // Searchbar Location tool
     // fitMapToMarkers(map, markers);
@@ -106,9 +110,12 @@ const initMapbox = () => {
         const position = [lon, lat];
         console.log(position);
         directions.setOrigin(position);
-        directions.setDestination([2.379013682710195, 48.86606987222612]);
+        const bounds = new mapboxgl.LngLatBounds();
+        markers.forEach(marker => bounds.extend(position));
+        map.fitBounds(bounds, { padding: 70, maxZoom: 15, duration: 0 });
+        // directions.setDestination([2.379013682710195, 48.86606987222612]);
     });
-       geolocate.trigger();
+    geolocate.trigger();
  // can be address in form setOrigin("12, Elm Street, NY")
  // can be address
    });
