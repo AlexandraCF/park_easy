@@ -18,8 +18,7 @@ const buildMap = (mapElement) => {
   mapboxgl.accessToken = mapElement.dataset.mapboxApiKey;
   return new mapboxgl.Map({
     container: 'map',
-    style: 'mapbox://styles/mapbox/streets-v11',
-    coordinates: [48.86606987222612, 2.379013682710195]
+    style: 'mapbox://styles/mapbox/streets-v11'
   });
 };
 
@@ -30,12 +29,14 @@ const addMarkersToMap = (map, markers) => {
       const element = document.createElement('pin');
         element.className = 'marker';
         element.style.backgroundImage = `url('${marker.image_url}')`;
-        element.style.backgroundSize = 'contain';
-        element.style.width = '15px';
-        element.style.height = '20px';
+        element.style.backgroundSize = 'cover';
+        element.style.width = '35px';
+        element.style.height = '47px';
         element.innerText = `${marker.available_spaces}`;
         element.style.textAlign = "center";
+        element.style.verticalAlign = "baseline";
         element.style.color = 'white';
+        element.style.paddingTop = "7px";
 
         new mapboxgl.Marker(element)
           .setLngLat([ marker.lng, marker.lat ])
@@ -62,11 +63,12 @@ const initMapbox = () => {
       positionOptions: {
         enableHighAccuracy: true
       },
-      trackUserLocation: true
+        trackUserLocation: true
     });
-    map.on('load', function() {
-      geolocate.trigger();
-    });
+
+    // map.on('load', function() {
+
+    // });
     // end auto geolocalisation user
     // fitMapToMarkers(map, markers);
     map.addControl(new MapboxGeocoder({ accessToken: mapboxgl.accessToken,
@@ -74,24 +76,39 @@ const initMapbox = () => {
     // action of the btn geolocate
     map.addControl(geolocate);
 
-    map.addControl(
-      new MapboxDirections({
-        accessToken: mapboxgl.accessToken,
-        unit: 'metric',
-        profile: 'mapbox/driving-traffic',
-        controls: {
-          profileSwitcher: false,
-          inputs: false
-        },
-        language: "en",
-        steps: true,
-        geocoder: {
-          language: "en"
-          },
-      }),
-      'bottom-left'
-    );
-  }
+// Current position as origin starting point
+   var directions = new MapboxDirections({
+       accessToken: mapboxgl.accessToken,
+         unit: 'metric',
+         profile: 'mapbox/driving-traffic',
+         controls: {
+           profileSwitcher: false,
+           inputs: false
+         },
+         language: "en",
+         steps: true,
+         geocoder: {
+           language: "en"
+           },
+       },
+       'top-left'
+   );
+  map.addControl(directions, 'top-left');
+
+   map.on('load', () => {
+    geolocate.on('geolocate', (e) => {
+        const lon = e.coords.longitude;
+        const lat = e.coords.latitude
+        const position = [lon, lat];
+        console.log(position);
+        directions.setOrigin(position);
+        directions.setDestination([2.379013682710195, 48.86606987222612]);
+    });
+       geolocate.trigger();
+ // can be address in form setOrigin("12, Elm Street, NY")
+ // can be address
+   });
+  };
 };
 
 // Direction navigation code
