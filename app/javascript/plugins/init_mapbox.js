@@ -18,7 +18,8 @@ const buildMap = (mapElement) => {
   mapboxgl.accessToken = mapElement.dataset.mapboxApiKey;
   return new mapboxgl.Map({
     container: 'map',
-    style: 'mapbox://styles/mapbox/streets-v11'
+    style: 'mapbox://styles/mapbox/streets-v11',
+    coordinates: [48.86606987222612, 2.379013682710195]
   });
 };
 
@@ -56,17 +57,23 @@ const initMapbox = () => {
     const map = buildMap(mapElement);
     const markers = JSON.parse(mapElement.dataset.markers);
     addMarkersToMap(map, markers);
-    fitMapToMarkers(map, markers);
-    map.addControl(new MapboxGeocoder({ accessToken: mapboxgl.accessToken,
-                                      mapboxgl: mapboxgl }));
-    map.addControl(
-      new mapboxgl.GeolocateControl({
+    // init auto geolocalisation user
+    const geolocate = new mapboxgl.GeolocateControl({
       positionOptions: {
         enableHighAccuracy: true
       },
-        trackUserLocation: true
-      })
-    );
+      trackUserLocation: true
+    });
+    map.on('load', function() {
+      geolocate.trigger();
+    });
+    // end auto geolocalisation user
+    // fitMapToMarkers(map, markers);
+    map.addControl(new MapboxGeocoder({ accessToken: mapboxgl.accessToken,
+                                      mapboxgl: mapboxgl }));
+    // action of the btn geolocate
+    map.addControl(geolocate);
+
     map.addControl(
       new MapboxDirections({
         accessToken: mapboxgl.accessToken,
