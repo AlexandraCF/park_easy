@@ -24,8 +24,9 @@ const buildMap = (mapElement) => {
 
 const addMarkersToMap = (map, markers) => {
   markers.forEach((marker) => {
-    const popup = new mapboxgl.Popup().setHTML(marker.infoWindow);
-    if (marker.available_spaces > 0) {
+    // Marker Info
+    // const popup = new mapboxgl.Popup().setHTML(marker.infoWindow);
+    if (marker.available_spaces >= 4 && marker.available_spaces <= 8) {
       const element = document.createElement('pin');
         element.className = 'marker';
         element.style.backgroundImage = `url('${marker.image_url}')`;
@@ -40,7 +41,7 @@ const addMarkersToMap = (map, markers) => {
 
         new mapboxgl.Marker(element)
           .setLngLat([ marker.lng, marker.lat ])
-          .setPopup(popup)
+          // .setPopup(popup)
           .addTo(map);
     };
   });
@@ -66,13 +67,14 @@ const initMapbox = () => {
         trackUserLocation: true
     });
 
-    // map.on('load', function() {
-
-    // });
-    // end auto geolocalisation user
+// Searchbar Location tool
     // fitMapToMarkers(map, markers);
     map.addControl(new MapboxGeocoder({ accessToken: mapboxgl.accessToken,
-                                      mapboxgl: mapboxgl }));
+      language: "en",
+      geocoder: {
+           language: "en"
+           },
+      mapboxgl: mapboxgl }));
     // action of the btn geolocate
     map.addControl(geolocate);
 
@@ -110,6 +112,18 @@ const initMapbox = () => {
    });
   };
 };
+
+//            Pseudo Code Rapid Park Button
+
+// #
+
+
+
+
+
+
+
+
 
 // Direction navigation code
 //
