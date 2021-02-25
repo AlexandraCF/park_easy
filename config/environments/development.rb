@@ -56,6 +56,7 @@ Rails.application.configure do
 
   # config/environments/development.rb
   config.hosts << /\A[a-z0-9]+\.ngrok\.io/
+  
   # Raises error for missing translations.
   # config.action_view.raise_on_missing_translations = true
 
