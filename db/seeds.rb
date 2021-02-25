@@ -66,7 +66,7 @@ lots["records"].each do |lot|
 										 latitude: lot["fields"]["geo_shape"]["coordinates"][1],
 										 longitude: lot["fields"]["geo_shape"]["coordinates"][0],
 										 total_places: lot["fields"]["plarel"],
-										 available_places: (0..places).to_a.sample
+										 available_places: (0...places).to_a.sample
 										 )
   spot.save(validate: false)
 end
