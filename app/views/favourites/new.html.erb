@@ -1,5 +1,4 @@
-<% simple_form_for (@favourites) do |f| %>
-  <%= f.input :adress %>
-  <%= f.submit, class: "btn btn-create" %>
+<% simple_form_for (@user, @favourite) do |f| %>
+  <%= f.input :address %>
+  <%= f.submit %>
   <% end %>
-  
