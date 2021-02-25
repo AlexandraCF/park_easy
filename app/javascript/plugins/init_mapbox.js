@@ -59,6 +59,7 @@ const initMapbox = () => {
     const markers = JSON.parse(mapElement.dataset.markers);
     addMarkersToMap(map, markers);
     // init auto geolocalisation user
+    fitMapToMarkers(map, markers);
     const geolocate = new mapboxgl.GeolocateControl({
       positionOptions: {
         enableHighAccuracy: true
@@ -70,7 +71,6 @@ const initMapbox = () => {
 
     // });
     // end auto geolocalisation user
-    // fitMapToMarkers(map, markers);
     map.addControl(new MapboxGeocoder({ accessToken: mapboxgl.accessToken,
                                       mapboxgl: mapboxgl }));
     // action of the btn geolocate
@@ -91,9 +91,9 @@ const initMapbox = () => {
            language: "en"
            },
        },
-       'top-left'
+       'bottom-left'
    );
-  map.addControl(directions, 'top-left');
+  map.addControl(directions, 'bottom-left');
 
    map.on('load', () => {
     geolocate.on('geolocate', (e) => {
