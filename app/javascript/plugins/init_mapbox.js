@@ -71,7 +71,8 @@ const initMapbox = () => {
       positionOptions: {
         enableHighAccuracy: true
       },
-        trackUserLocation: true
+        trackUserLocation: true,
+        showAccuracyCircle: false
     });
 
 
@@ -117,8 +118,10 @@ const initMapbox = () => {
         console.log(position);
         const bounds = new mapboxgl.LngLatBounds();
         markers.forEach(marker => bounds.extend(position));
-        map.fitBounds(bounds, { padding: 70, maxZoom: 15, duration: 0 });
+
+        map.fitBounds(bounds, { padding: 70, maxZoom: 16, duration: 0 });
         directions.setOrigin(position);
+
     });
   geolocate.trigger();
   const btnGo = document.querySelector(".btn-go");
