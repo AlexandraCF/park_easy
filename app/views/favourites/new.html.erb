@@ -4,7 +4,8 @@
       <%= f.input :address, placeholder:"Add a favourite address", class:"Favfav"%>
     </div>
     <div class="form-actions">
-      <%= f.button :submit, "Confirm", class: "btn-signup-signuppage" %>
+        <%= f.button :submit, "Confirm", class: "btn-signup-signuppage" %>
     </div>
+    <%= link_to "Back", parking_spots_path, class: "btn-back-favourites"  %>
   <% end %>
 </div>

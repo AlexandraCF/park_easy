@@ -33,6 +33,7 @@ import { initMapbox } from '../plugins/init_mapbox';
 import { initOnboardingCaroussel } from '../components/init_onboarding';
 import { dashboardToggle } from '../components/dashboard_toggle';
 import { dashboardCloseToggle } from '../components/dashboard_toggle';
+import { toggleFavourite } from '../components/toggle_favourite';
 
 document.addEventListener('turbolinks:load', () => {
   // Call your functions here, e.g:
@@ -41,4 +42,5 @@ document.addEventListener('turbolinks:load', () => {
   initMapbox();
   dashboardToggle();
   dashboardCloseToggle();
+  toggleFavourite();
 });

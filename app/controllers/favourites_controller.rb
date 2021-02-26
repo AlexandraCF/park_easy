@@ -8,6 +8,10 @@ class FavouritesController < ApplicationController
     @favourite = Favourite.new
   end
 
+  def show
+    @favourite = Favourite.find(params[:id])
+  end
+
   def create
     @favourite = Favourite.new(favourite_params)
     @favourite.user = current_user
