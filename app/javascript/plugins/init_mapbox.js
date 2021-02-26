@@ -1,6 +1,6 @@
 import mapboxgl from 'mapbox-gl';
 import MapboxGeocoder from '@mapbox/mapbox-gl-geocoder';
-
+import { displayButtonGo } from '../components/bottombar';
 // Initialize the geolocate control.
 // var geolocate = new mapboxgl.GeolocateControl({
 //   positionOptions: {

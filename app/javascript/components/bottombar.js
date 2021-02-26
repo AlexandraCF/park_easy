@@ -11,3 +11,16 @@ const showContent = () => {
 };
 
 export { showContent };
+
+const displayButtonGo = () => {
+	const btnGo = document.querySelector(".btn-go");
+	// console.log(btnGo);
+	const markerBtnGo = document.querySelectorAll(".marker.mapboxgl-marker.mapboxgl-marker-anchor-center");
+	markerBtnGo.forEach((item) => {
+		item.addEventListener("click", () => {
+			btnGo.classList.add("active-go-btn");
+		});
+	});
+};
+
+export { displayButtonGo };
