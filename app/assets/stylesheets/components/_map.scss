@@ -25,32 +25,3 @@
 	left: 260px !important;
 }
 
-// Minutes bar
-
-.mapbox-directions-instructions {
-  display: none;
-}
-
-.directions-control {
-	width: 122px !important;
-	border-radius: 8px !important;
-
-}
-
-.mapbox-directions-route-summary {
-	background-color: #A8DADC !important;
-	width: 122px !important;
-	color: #467B9D !important;
-	font-size: 18px !important;
-	display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  height: 90px;
-	span {
-		color: #1E3557 !important;
-		font-size: 24px;
-		font-weight: bold;
-	}
-}
-

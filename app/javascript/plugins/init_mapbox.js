@@ -1,6 +1,6 @@
 import mapboxgl from 'mapbox-gl';
 import MapboxGeocoder from '@mapbox/mapbox-gl-geocoder';
-
+import { displayButtonGo } from '../components/bottombar';
 // Initialize the geolocate control.
 // var geolocate = new mapboxgl.GeolocateControl({
 //   positionOptions: {
@@ -71,7 +71,8 @@ const initMapbox = () => {
       positionOptions: {
         enableHighAccuracy: true
       },
-        trackUserLocation: true
+        trackUserLocation: true,
+        showAccuracyCircle: false
     });
 
 
@@ -117,14 +118,18 @@ const initMapbox = () => {
         console.log(position);
         const bounds = new mapboxgl.LngLatBounds();
         markers.forEach(marker => bounds.extend(position));
-        map.fitBounds(bounds, { padding: 70, maxZoom: 15, duration: 0 });
+
+        map.fitBounds(bounds, { padding: 70, maxZoom: 16, duration: 0 });
         directions.setOrigin(position);
+
     });
   geolocate.trigger();
+  const btnGo = document.querySelector(".btn-go");
   document.querySelectorAll(".marker").forEach(marker => {
     marker.addEventListener("click", (event) => {
       // Current position as origin starting point
         directions.setDestination([marker.dataset.lng, marker.dataset.lat]);
+        btnGo.classList.add("active-go-btn");
     })
   });
  // can be address in form setOrigin("12, Elm Street, NY")

@@ -1,0 +1,82 @@
+// Minutes bar
+
+a.mapboxgl-ctrl-logo {
+	display: none !important;
+}
+
+.mapboxgl-ctrl-bottom-right {
+	display: none;
+}
+
+.mapbox-directions-instructions {
+  display: none;
+}
+
+.mapbox-directions-route-summary {
+	position: absolute !important;
+  z-index: 1;
+  width: 377px !important;
+  background-color: white !important;
+  color: #fff;
+  padding: 5px 10px;
+  font-size: 15px;
+  line-height: 28px;
+  top: -65px !important;
+  left: -11px !important;
+  height: 100px !important;
+  h1 {
+  	color: #467B9D !important;
+  	font-size: 22px !important;
+    position: absolute;
+    top: 30px;
+    left: 31px;
+    content: " " !important;
+  }
+  span {
+  	position: absolute;
+  	color: #1E3557 !important;
+  	font-size: 28px;
+  	font-weight: bold;	
+  	top: 28px;
+    left: 147px;
+  }
+}
+
+// Btn Go
+
+.btn-go {
+  display: none;
+	position: absolute;
+  background-color: #467B9D;
+  color: white;
+  z-index: 2;
+  bottom: 8px;
+  right: 26px;
+  padding: 20px;
+  border-radius: 51%;
+  font-weight: bold;
+  font-size: 24px;
+  box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.1);
+  &:hover {
+  	box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.5);
+  }
+}
+
+.active-go-btn {
+  display: inherit;
+}
+
+// 	// background-color: #A8DADC !important;
+// 	// width: 122px !important;
+// 	// color: #467B9D !important;
+// 	// font-size: 18px !important;
+// 	// display: flex;
+//  //  flex-direction: column;
+//  //  justify-content: center;
+//  //  align-items: center;
+//  //  height: 90px;
+// 	// span {
+// 	// 	z-index: 3;
+// 	// 	color: #1E3557 !important;
+// 	// 	font-size: 24px;
+// 	// 	font-weight: bold;

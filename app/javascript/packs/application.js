@@ -33,14 +33,25 @@ import { initMapbox } from '../plugins/init_mapbox';
 import { initOnboardingCaroussel } from '../components/init_onboarding';
 import { dashboardToggle } from '../components/dashboard_toggle';
 import { dashboardCloseToggle } from '../components/dashboard_toggle';
+
+import { showContent } from '../components/bottombar';
+import { displayButtonGo } from '../components/bottombar';
 import { toggleFavourite } from '../components/toggle_favourite';
+
 
 document.addEventListener('turbolinks:load', () => {
   // Call your functions here, e.g:
   // initSelect2();
+  
+  if  (document.querySelector('#map')) {
+    console.log(document.querySelector('#map'))
+    document.querySelector('#map').display = "none"
+  };
   initOnboardingCaroussel();
   initMapbox();
   dashboardToggle();
   dashboardCloseToggle();
+  showContent();
+  // displayButtonGo();
   toggleFavourite();
 });
