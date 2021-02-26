@@ -19,8 +19,8 @@ const buildMap = (mapElement) => {
   return new mapboxgl.Map({
     container: 'map',
     style: 'mapbox://styles/mapbox/streets-v11',
-    // center: [2.3820137, 48.8654838],
-    // zoom: 9
+    //center: [2.3820137, 48.8654838],
+    zoom: 16
   });
 };
 
@@ -42,6 +42,7 @@ const addMarkersToMap = (map, markers) => {
         element.style.paddingTop = "7px";
         element.dataset.lat = marker.lat;
         element.dataset.lng = marker.lng;
+
 
         new mapboxgl.Marker(element)
           .setLngLat([ marker.lng, marker.lat ])
@@ -86,6 +87,8 @@ const initMapbox = () => {
     // action of the btn geolocate
     map.addControl(geolocate);
 
+// Current position as origin starting point
+  
     let directions = new MapboxDirections({
        accessToken: mapboxgl.accessToken,
          unit: 'metric',
@@ -99,21 +102,19 @@ const initMapbox = () => {
          geocoder: {
            language: "en"
            },
+
           interactive: false
        },
        'bottom-left'
    );
   map.addControl(directions, 'bottom-left');
 
-
    map.on('load', () => {
     geolocate.on('geolocate', (e) => {
-        console.log("yo");
         const lon = e.coords.longitude;
         const lat = e.coords.latitude
         const position = [lon, lat];
         console.log(position);
-
         const bounds = new mapboxgl.LngLatBounds();
         markers.forEach(marker => bounds.extend(position));
         map.fitBounds(bounds, { padding: 70, maxZoom: 15, duration: 0 });
