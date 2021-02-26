@@ -4,19 +4,26 @@
     <title>ParkEasy</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-
+      
+    
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="mobile-web-app-capable" content="yes">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= stylesheet_pack_tag 'application' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload', defer: true %>
+    
+    <link rel="manifest" href="<%= asset_path 'manifest.json' %>">
 
+    <%= render 'shared/ios_pwa_links' %>
   </head>
 
   <body>
     <% if controller_name == 'parking_spots' %>
-      <div class="menu-toggler"><i class="fas fa-bars"></i></div>
+      <i class="fas fa-user-circle menu-toggler"></i>
+      <%#= cl_image_tag current_user.photo.key, height: 50, width: 50, crop: :fill, class: "menu-toggler" %>
     <% end %>
-
+    <!-- <div class="menu-toggler"><i class="fas fa-bars"></i></div> -->
     <%= render 'shared/dashboard' if current_user %>
     <%#= render 'shared/navbar' %>
     <%#= render 'shared/flashes' %>

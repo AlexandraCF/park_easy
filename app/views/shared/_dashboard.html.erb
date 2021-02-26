@@ -10,12 +10,18 @@
 	    <p><%= current_user.email %></p>
 	  </div>
 	  <div class="home-dashboard">
-	    <p><i class="fas fa-home"></i>    Home :</p>
+	    <p><i class="fas fa-home"></i>    <strong>Home</strong> :</p>
 	    <%= current_user.address %>
 	  </div>
 	  <div class="favorites-dashboard">
-	    <p><i class="fas fa-home"></i>    Favourites :</p>
-	    <%= current_user.username %>
+		<p><i class="fas fa-bookmark" aria-hidden="true"></i> <strong>Favourites</strong></p>
+	      <%= link_to " + Add Favourites", new_favourite_path, class:"btn btn-favourite" %>
+	  </div>
+
+	  <div class="navigation">
+	  	<div class="wrapper">
+        <%= render 'shared/index'%>
+		  </div>
 	  </div>
 
 	  <div class="logout-dashboard">
@@ -25,3 +31,4 @@
 	 
 	 <%# link to current_user.address , vers index + parametre pour current localisation %>
 </div>
+<div class="menu-overlay"></div>
