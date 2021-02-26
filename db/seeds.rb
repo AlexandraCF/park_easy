@@ -8,9 +8,9 @@ lots = JSON.parse(url_serialized)
 
 puts "Cleaning database..."
 
+Favourite.destroy_all
 User.destroy_all
 ParkingSpot.destroy_all
-Favourite.destroy_all
 
 
 puts "Creating users..."
