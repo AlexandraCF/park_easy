@@ -19,8 +19,8 @@ const buildMap = (mapElement) => {
   return new mapboxgl.Map({
     container: 'map',
     style: 'mapbox://styles/mapbox/streets-v11',
-    // center: [2.3820137, 48.8654838],
-    // zoom: 9
+    //center: [2.3820137, 48.8654838],
+    zoom: 16
   });
 };
 
@@ -40,6 +40,9 @@ const addMarkersToMap = (map, markers) => {
         element.style.verticalAlign = "baseline";
         element.style.color = 'white';
         element.style.paddingTop = "7px";
+        element.dataset.lat = marker.lat;
+        element.dataset.lng = marker.lng;
+
 
         new mapboxgl.Marker(element)
           .setLngLat([ marker.lng, marker.lat ])
@@ -85,7 +88,8 @@ const initMapbox = () => {
     map.addControl(geolocate);
 
 // Current position as origin starting point
-   var directions = new MapboxDirections({
+  
+    let directions = new MapboxDirections({
        accessToken: mapboxgl.accessToken,
          unit: 'metric',
          profile: 'mapbox/driving-traffic',
@@ -98,6 +102,8 @@ const initMapbox = () => {
          geocoder: {
            language: "en"
            },
+
+          interactive: false
        },
        'bottom-left'
    );
@@ -109,13 +115,18 @@ const initMapbox = () => {
         const lat = e.coords.latitude
         const position = [lon, lat];
         console.log(position);
-        directions.setOrigin(position);
         const bounds = new mapboxgl.LngLatBounds();
         markers.forEach(marker => bounds.extend(position));
         map.fitBounds(bounds, { padding: 70, maxZoom: 15, duration: 0 });
-        // directions.setDestination([2.379013682710195, 48.86606987222612]);
+        directions.setOrigin(position);
     });
-    geolocate.trigger();
+  geolocate.trigger();
+  document.querySelectorAll(".marker").forEach(marker => {
+    marker.addEventListener("click", (event) => {
+      // Current position as origin starting point
+        directions.setDestination([marker.dataset.lng, marker.dataset.lat]);
+    })
+  });
  // can be address in form setOrigin("12, Elm Street, NY")
  // can be address
    });

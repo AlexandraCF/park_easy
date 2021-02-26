@@ -1,4 +1,11 @@
-<% simple_form_for (@user, @favourite) do |f| %>
-  <%= f.input :address %>
-  <%= f.submit %>
+<div class="login-main-container d-flex flex-column justify-content-between">
+  <%= simple_form_for(@favourite) do |f| %>
+    <div class="login-form form-inputs">
+      <%= f.input :address, placeholder:"Add a favourite address", class:"Favfav"%>
+    </div>
+    <div class="form-actions">
+        <%= f.button :submit, "Confirm", class: "btn-signup-signuppage" %>
+    </div>
+    <%= link_to "Back", parking_spots_path, class: "btn-back-favourites"  %>
   <% end %>
+</div>
