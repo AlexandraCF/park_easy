@@ -121,10 +121,12 @@ const initMapbox = () => {
         directions.setOrigin(position);
     });
   geolocate.trigger();
+  const btnGo = document.querySelector(".btn-go");
   document.querySelectorAll(".marker").forEach(marker => {
     marker.addEventListener("click", (event) => {
       // Current position as origin starting point
         directions.setDestination([marker.dataset.lng, marker.dataset.lat]);
+        btnGo.classList.add("active-go-btn");
     })
   });
  // can be address in form setOrigin("12, Elm Street, NY")
