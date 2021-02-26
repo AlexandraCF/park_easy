@@ -22,6 +22,7 @@
     <% if controller_name == 'parking_spots' %>
       <i class="fas fa-user-circle menu-toggler"></i>
       <%#= cl_image_tag current_user.photo.key, height: 50, width: 50, crop: :fill, class: "menu-toggler" %>
+      <%= render 'shared/bottombar' %>
     <% end %>
     <!-- <div class="menu-toggler"><i class="fas fa-bars"></i></div> -->
     <%= render 'shared/dashboard' if current_user %>
