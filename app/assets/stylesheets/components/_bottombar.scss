@@ -45,8 +45,9 @@ a.mapboxgl-ctrl-logo {
 // Btn Go
 
 .btn-go {
+  display: none;
 	position: absolute;
-  background-color: #E63846;
+  background-color: #467B9D;
   color: white;
   z-index: 2;
   bottom: 8px;
@@ -59,6 +60,10 @@ a.mapboxgl-ctrl-logo {
   &:hover {
   	box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.5);
   }
+}
+
+.active-go-btn {
+  display: inherit;
 }
 
 // 	// background-color: #A8DADC !important;

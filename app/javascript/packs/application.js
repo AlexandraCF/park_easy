@@ -35,6 +35,7 @@ import { dashboardToggle } from '../components/dashboard_toggle';
 import { dashboardCloseToggle } from '../components/dashboard_toggle';
 
 import { showContent } from '../components/bottombar';
+import { displayButtonGo } from '../components/bottombar';
 import { toggleFavourite } from '../components/toggle_favourite';
 
 
@@ -46,5 +47,6 @@ document.addEventListener('turbolinks:load', () => {
   dashboardToggle();
   dashboardCloseToggle();
   showContent();
+  // displayButtonGo();
   toggleFavourite();
 });
