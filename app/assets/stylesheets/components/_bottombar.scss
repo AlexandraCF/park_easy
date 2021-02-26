@@ -42,6 +42,25 @@ a.mapboxgl-ctrl-logo {
   }
 }
 
+// Btn Go
+
+.btn-go {
+	position: absolute;
+  background-color: #E63846;
+  color: white;
+  z-index: 2;
+  bottom: 8px;
+  right: 26px;
+  padding: 20px;
+  border-radius: 51%;
+  font-weight: bold;
+  font-size: 24px;
+  box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.1);
+  &:hover {
+  	box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.5);
+  }
+}
+
 // 	// background-color: #A8DADC !important;
 // 	// width: 122px !important;
 // 	// color: #467B9D !important;
