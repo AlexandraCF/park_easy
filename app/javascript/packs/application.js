@@ -37,6 +37,11 @@ import { dashboardCloseToggle } from '../components/dashboard_toggle';
 document.addEventListener('turbolinks:load', () => {
   // Call your functions here, e.g:
   // initSelect2();
+  
+  if  (document.querySelector('#map')) {
+    console.log(document.querySelector('#map'))
+    document.querySelector('#map').display = "none"
+  };
   initOnboardingCaroussel();
   initMapbox();
   dashboardToggle();

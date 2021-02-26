@@ -19,8 +19,8 @@ const buildMap = (mapElement) => {
   return new mapboxgl.Map({
     container: 'map',
     style: 'mapbox://styles/mapbox/streets-v11',
-    // center: [2.3820137, 48.8654838],
-    // zoom: 9
+    //center: [2.3820137, 48.8654838],
+    zoom: 16
   });
 };
 
@@ -112,7 +112,7 @@ const initMapbox = () => {
         directions.setOrigin(position);
         const bounds = new mapboxgl.LngLatBounds();
         markers.forEach(marker => bounds.extend(position));
-        map.fitBounds(bounds, { padding: 70, maxZoom: 15, duration: 0 });
+        map.fitBounds(bounds, { padding: 70, maxZoom: 16, duration: 0 });
         // directions.setDestination([2.379013682710195, 48.86606987222612]);
     });
     geolocate.trigger();
