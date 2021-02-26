@@ -1,0 +1,3 @@
+<% current_user.favourites.each do |favourite| %>
+  <h2 class="fav-h2"><i class="fa fa-map-marker" aria-hidden="true"></i> <%= favourite.address %></h2>
+<% end %>

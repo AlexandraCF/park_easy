@@ -1,5 +1,6 @@
 class ParkingSpotsController < ApplicationController
   def index
+
     @parkingspots = ParkingSpot.all
 
     # the `geocoded` scope filters only parkingspots with coordinates (latitude & longitude)
