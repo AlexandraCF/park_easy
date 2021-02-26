@@ -18,27 +18,32 @@ const buildMap = (mapElement) => {
   mapboxgl.accessToken = mapElement.dataset.mapboxApiKey;
   return new mapboxgl.Map({
     container: 'map',
-    style: 'mapbox://styles/mapbox/streets-v11'
+    style: 'mapbox://styles/mapbox/streets-v11',
+    //center: [2.3820137, 48.8654838],
+    zoom: 16
   });
 };
 
 const addMarkersToMap = (map, markers) => {
   markers.forEach((marker) => {
-    const popup = new mapboxgl.Popup().setHTML(marker.infoWindow);
-    if (marker.available_spaces > 0) {
+    // Marker Info
+    // const popup = new mapboxgl.Popup().setHTML(marker.infoWindow);
+    if (marker.available_spaces >= 4 && marker.available_spaces <= 8) {
       const element = document.createElement('pin');
         element.className = 'marker';
         element.style.backgroundImage = `url('${marker.image_url}')`;
-        element.style.backgroundSize = 'contain';
-        element.style.width = '15px';
-        element.style.height = '20px';
+        element.style.backgroundSize = 'cover';
+        element.style.width = '35px';
+        element.style.height = '47px';
         element.innerText = `${marker.available_spaces}`;
         element.style.textAlign = "center";
+        element.style.verticalAlign = "baseline";
         element.style.color = 'white';
+        element.style.paddingTop = "7px";
 
         new mapboxgl.Marker(element)
           .setLngLat([ marker.lng, marker.lat ])
-          .setPopup(popup)
+          // .setPopup(popup)
           .addTo(map);
     };
   });
@@ -56,36 +61,78 @@ const initMapbox = () => {
     const map = buildMap(mapElement);
     const markers = JSON.parse(mapElement.dataset.markers);
     addMarkersToMap(map, markers);
-    fitMapToMarkers(map, markers);
-    map.addControl(new MapboxGeocoder({ accessToken: mapboxgl.accessToken,
-                                      mapboxgl: mapboxgl }));
-    map.addControl(
-      new mapboxgl.GeolocateControl({
+    // init auto geolocalisation user
+    // fitMapToMarkers(map, markers);
+
+    const geolocate = new mapboxgl.GeolocateControl({
       positionOptions: {
         enableHighAccuracy: true
       },
         trackUserLocation: true
-      })
-    );
-    map.addControl(
-      new MapboxDirections({
-        accessToken: mapboxgl.accessToken,
-        unit: 'metric',
-        profile: 'mapbox/driving-traffic',
-        controls: {
-          profileSwitcher: false,
-          inputs: false
-        },
-        language: "en",
-        steps: true,
-        geocoder: {
-          language: "en"
-          },
-      }),
-      'bottom-left'
-    );
-  }
+    });
+
+
+// Searchbar Location tool
+    // fitMapToMarkers(map, markers);
+
+    map.addControl(new MapboxGeocoder({ accessToken: mapboxgl.accessToken,
+      language: "en",
+      geocoder: {
+           language: "en"
+           },
+      mapboxgl: mapboxgl }));
+    // action of the btn geolocate
+    map.addControl(geolocate);
+
+// Current position as origin starting point
+   var directions = new MapboxDirections({
+       accessToken: mapboxgl.accessToken,
+         unit: 'metric',
+         profile: 'mapbox/driving-traffic',
+         controls: {
+           profileSwitcher: false,
+           inputs: false
+         },
+         language: "en",
+         steps: true,
+         geocoder: {
+           language: "en"
+           },
+       },
+       'bottom-left'
+   );
+  map.addControl(directions, 'bottom-left');
+
+   map.on('load', () => {
+    geolocate.on('geolocate', (e) => {
+        const lon = e.coords.longitude;
+        const lat = e.coords.latitude
+        const position = [lon, lat];
+        console.log(position);
+        directions.setOrigin(position);
+        const bounds = new mapboxgl.LngLatBounds();
+        markers.forEach(marker => bounds.extend(position));
+        map.fitBounds(bounds, { padding: 70, maxZoom: 16, duration: 0 });
+        // directions.setDestination([2.379013682710195, 48.86606987222612]);
+    });
+    geolocate.trigger();
+ // can be address in form setOrigin("12, Elm Street, NY")
+ // can be address
+   });
+  };
 };
+
+//            Pseudo Code Rapid Park Button
+
+// #
+
+
+
+
+
+
+
+
 
 // Direction navigation code
 //
