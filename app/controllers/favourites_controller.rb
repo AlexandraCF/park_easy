@@ -5,16 +5,18 @@ class FavouritesController < ApplicationController
   end
 
   def new
-    @user = User.find(params[:user_id])
     @favourite = Favourite.new
+  end
+
+  def show
+    @favourite = Favourite.find(params[:id])
   end
 
   def create
     @favourite = Favourite.new(favourite_params)
-    @user = User.find(params[:user_id])
-    @favourite.user = @user
+    @favourite.user = current_user
       if @favourite.save
-        redirect_to_dashboard_path
+        redirect_to parking_spots_path
       else
         render :new
       end
