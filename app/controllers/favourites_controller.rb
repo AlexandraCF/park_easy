@@ -21,7 +21,11 @@ class FavouritesController < ApplicationController
         render :new
       end
   end
-
+  def destroy
+    @favourite = Favourite.find(params[:id])
+    @favourite.destroy
+    redirect_to parking_spots_path
+  end
 
 
   private
@@ -31,4 +35,6 @@ class FavouritesController < ApplicationController
   end
 
 end
+  
+
   

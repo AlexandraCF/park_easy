@@ -16,6 +16,7 @@ class ParkingSpotsController < ApplicationController
     end
   end
 
+
   def update_available_places
     parking_spot = ParkingSpot.find(params[:id])
     if params[:do] == "minus"
@@ -26,5 +27,10 @@ class ParkingSpotsController < ApplicationController
       parking_spot.save
     end
     render json: parking_spot
+  end
+  
+  def closespot
+    @parkingspot = ParkingSpot.where("available_places >= 4").near([params['lat'], params['lon']], 1).first
+    render json: @parkingspot
   end
 end

@@ -67,6 +67,20 @@ const btnTakePlace = () => {
 
 export { btnTakePlace };
 
+
+const displayButtonPark = () => {
+  const btnPark = document.querySelector(".btn-park");
+  // console.log(btnPark);
+  const markerBtnPark = document.querySelectorAll(".marker.mapboxgl-marker.mapboxgl-marker-anchor-center");
+  markerBtnPark.forEach((marker) => {
+    marker.addEventListener("click", () => {
+      btnPark.classList.add("active-park-btn");
+    });
+  });
+};
+
+export { displayButtonPark };
+
 const displayInstruction = () => {
 	const btnGo = document.querySelector(".btn-go");
 	btnGo.addEventListener("click", (event) => {
@@ -79,4 +93,3 @@ const displayInstruction = () => {
 };
 
 export { displayInstruction };
-
