@@ -96,7 +96,21 @@ const initMapbox = () => {
     // action of the btn geolocate
     map.addControl(geolocate);
 
+    //  Btn Clear All
+    // document.querySelector(".btn-clear").addEventListener("click", (event) => {
+    //   const btnClear = document.querySelector(".btn-clear");
+    //   btnClear.classList.add("active-clear-btn");
+    //   var directionsDisplay;
+    //     if(directionsDisplay != null) {
+    //       directionsDisplay.setMap(null);
+    //       directionsDisplay = null;
+    //       map.setZoom(8);
+    //       map.setCenter();
+    //     };
+    //   });
+
       // Current position as origin starting point
+
 
     let directions = new MapboxDirections({
       accessToken: mapboxgl.accessToken,
@@ -148,24 +162,30 @@ const initMapbox = () => {
             directions.setDestination([data["longitude"], data["latitude"]]);
           });
         });
-      });
 
-      geolocate.trigger();
-
-      const btnGo = document.querySelector(".btn-go");
-      const btnPark = document.querySelector(".btn-park");
-   
-      document.querySelectorAll(".marker").forEach(marker => {
-        marker.addEventListener("click", (event) => {
-          // Current position as origin starting point
-            directions.setDestination([marker.dataset.lng, marker.dataset.lat]);
-            const bounds = new mapboxgl.LngLatBounds();
+    });
+  geolocate.trigger();
+  const btnGo = document.querySelector(".btn-go");
+  const btnPark = document.querySelector(".btn-park");
+  document.querySelectorAll(".marker").forEach(marker => {
+    marker.addEventListener("click", (event) => {
+      // Current position as origin starting point
+          directions.setDestination([marker.dataset.lng, marker.dataset.lat]);
+      // added by alexandra
+          const bounds = new mapboxgl.LngLatBounds();
         [{lng: 2.3789894, lat: 48.8656},{lat: marker.dataset.lat, lng: marker.dataset.lng},{lat: 48.865487, lng: 2.382093}, {lat: 48.865083, lng: 2.382692}, {lat: 48.865603, lng: 2.384176}, {lat: 48.864839, lng: 2.385049}, {lat: 48.864037, lng: 2.383574}].forEach(marker => bounds.extend([ marker.lng, marker.lat ]))
         map.fitBounds(bounds, { padding: 70, maxZoom: 16, duration: 0 });
-            btnGo.classList.add("active-go-btn");
-        });
-      });
+      
+      // Added by Javier 
+        btnGo.classList.add("active-go-btn");
+        btnGo.dataset.id = marker.dataset.id
+        const routeSummary = document.querySelector(".mapbox-directions-route-summary");
+        if (routeSummary) {
+          routeSummary.classList.remove("active-leaving-btn");
+        };
+    })
 
+  });
 
       // directions.setDestination : can be address in form setOrigin("12, Elm Street, NY")
       // directions.setOrigin : can be address
