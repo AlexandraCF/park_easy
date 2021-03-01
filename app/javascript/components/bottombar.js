@@ -24,3 +24,16 @@ const displayButtonGo = () => {
 };
 
 export { displayButtonGo };
+
+const displayInstruction = () => {
+	const btnGo = document.querySelector(".btn-go");
+	btnGo.addEventListener("click", (event) => {
+		const navigation = document.querySelector(".mapbox-directions-instructions");
+		console.log(navigation);
+		navigation.style.display = 'block';
+		navigation.classList.add("active-directions-instructions");
+
+	});
+};
+
+export { displayInstruction };
