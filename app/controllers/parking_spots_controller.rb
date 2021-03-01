@@ -11,8 +11,17 @@ class ParkingSpotsController < ApplicationController
         'marker-symbol': 2,
         infoWindow: render_to_string(partial: "info_window", locals: { parkingspot: parkingspot }),
         image_url: helpers.asset_url('map_marker_solid.svg'),
-        available_spaces: parkingspot.available_places
+        available_spaces: parkingspot.available_places,
+        parking_spot_id: parkingspot.id
       }
+    end
+  end
+
+  def update_available_places
+    parking_spot = ParkingSpot.find(params[:id])
+
+    if params[:do] == "plus"
+      render json: parking_spot
     end
   end
 end

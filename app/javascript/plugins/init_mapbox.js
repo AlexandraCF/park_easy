@@ -42,6 +42,7 @@ const addMarkersToMap = (map, markers) => {
         element.style.paddingTop = "7px";
         element.dataset.lat = marker.lat;
         element.dataset.lng = marker.lng;
+        element.dataset.id = marker.parking_spot_id;
 
 
         new mapboxgl.Marker(element)
@@ -130,6 +131,7 @@ const initMapbox = () => {
       // Current position as origin starting point
         directions.setDestination([marker.dataset.lng, marker.dataset.lat]);
         btnGo.classList.add("active-go-btn");
+        btnGo.dataset.id = marker.dataset.id
         const routeSummary = document.querySelector(".mapbox-directions-route-summary");
         if (routeSummary) {
           routeSummary.classList.remove("active-leaving-btn");

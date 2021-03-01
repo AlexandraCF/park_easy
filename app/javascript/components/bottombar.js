@@ -12,18 +12,18 @@ const showContent = () => {
 
 export { showContent };
 
-const displayButtonGo = () => {
-	const btnGo = document.querySelector(".btn-go");
-	// console.log(btnGo);
-	const markerBtnGo = document.querySelectorAll(".marker.mapboxgl-marker.mapboxgl-marker-anchor-center");
-	markerBtnGo.forEach((item) => {
-		item.addEventListener("click", () => {
-			btnGo.classList.add("active-go-btn");
-		});
-	});
-};
+// const displayButtonGo = () => {
+// 	const btnGo = document.querySelector(".btn-go");
+// 	// console.log(btnGo);
+// 	const markerBtnGo = document.querySelectorAll(".marker.mapboxgl-marker.mapboxgl-marker-anchor-center");
+// 	markerBtnGo.forEach((item) => {
+// 		item.addEventListener("click", () => {
+// 			btnGo.classList.add("active-go-btn");
+// 		});
+// 	});
+// };
 
-export { displayButtonGo };
+// export { displayButtonGo };
 
 const btnTakePlace = () => {
 	const btnGo = document.querySelector(".btn-go");
@@ -33,6 +33,10 @@ const btnTakePlace = () => {
 	btnGo.addEventListener("click", () => {
 		btnGo.classList.remove("active-go-btn");
 		btnParked.classList.add("active-parked-btn");
+		console.log(btnGo.dataset.id)
+		fetch(`http://localhost:3000/update-available-places?id=${btnGo.dataset.id}&do=plus`)
+			.then(response => response.json())
+			.then((data) => console.log(data))
 	});
 
 	btnParked.addEventListener("click", () => {
