@@ -38,6 +38,7 @@ import { showContent } from '../components/bottombar';
 import { displayButtonGo } from '../components/bottombar';
 import { displayButtonPark } from '../components/bottombar';
 import { toggleFavourite } from '../components/toggle_favourite';
+import { btnTakePlace } from '../components/bottombar';
 import { displayInstruction } from '../components/bottombar';
 
 document.addEventListener('turbolinks:load', () => {
@@ -45,7 +46,7 @@ document.addEventListener('turbolinks:load', () => {
   // initSelect2();
 
   if  (document.querySelector('#map')) {
-    console.log(document.querySelector('#map'))
+    // console.log(document.querySelector('#map'))
     document.querySelector('#map').display = "none"
   };
   initOnboardingCaroussel();
@@ -53,6 +54,7 @@ document.addEventListener('turbolinks:load', () => {
   dashboardToggle();
   dashboardCloseToggle();
   showContent();
+  btnTakePlace();
   displayButtonPark();
   toggleFavourite();
   displayInstruction();
