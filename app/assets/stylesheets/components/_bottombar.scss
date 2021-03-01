@@ -150,3 +150,37 @@ a.mapboxgl-ctrl-logo {
 .nondisplay-route-summary {
   display: none;
 }
+
+
+.active-leaving-btn {
+  display: inherit;
+}
+
+// Btn clearing Directions
+
+.btn-clear {
+  display: inherit;
+  position: absolute;
+  background-color: #1D3557;
+  color: white;
+  text-align: center;
+  height: 30px;
+  width: 30px;
+  text-align: center;
+  z-index: 2;
+  top: 102px;
+  right: 9px;
+  padding: 4px 4px;
+  border-radius: 18%;
+  font-weight: bold;
+  font-size: 20px;
+  box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.1);
+  &:hover {
+    box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.5);
+  }
+}
+
+.active-clear-btn {
+  display: inherit;
+}
+

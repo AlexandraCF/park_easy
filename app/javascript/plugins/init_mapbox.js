@@ -94,6 +94,19 @@ const initMapbox = () => {
     // action of the btn geolocate
     map.addControl(geolocate);
 
+    //  Btn Clear All
+    // document.querySelector(".btn-clear").addEventListener("click", (event) => {
+    //   const btnClear = document.querySelector(".btn-clear");
+    //   btnClear.classList.add("active-clear-btn");
+    //   var directionsDisplay;
+    //     if(directionsDisplay != null) {
+    //       directionsDisplay.setMap(null);
+    //       directionsDisplay = null;
+    //       map.setZoom(8);
+    //       map.setCenter();
+    //     };
+    //   });
+
 // Current position as origin starting point
 
     let directions = new MapboxDirections({
@@ -157,7 +170,7 @@ const initMapbox = () => {
           routeSummary.classList.remove("active-leaving-btn");
         };
     })
-  
+
   });
 
 
