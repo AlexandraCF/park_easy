@@ -140,7 +140,7 @@ const initMapbox = () => {
           // .where(parking_spots.available_spaces >= 4 && parking_spots.available_spaces <= 8)
           .then(response => response.json())
           .then((data) =>  {
-            console.log(data);
+            btnGo.dataset.id = data.id
             directions.setDestination([data["longitude"], data["latitude"]]);
           });
         });
@@ -154,6 +154,7 @@ const initMapbox = () => {
         directions.setDestination([marker.dataset.lng, marker.dataset.lat]);
         btnGo.classList.add("active-go-btn");
         btnGo.dataset.id = marker.dataset.id
+        console.log(btnGo.dataset.id);
         const routeSummary = document.querySelector(".mapbox-directions-route-summary");
         if (routeSummary) {
           routeSummary.classList.remove("active-leaving-btn");
