@@ -1,2 +1,4 @@
 <div class="btn-go">Go</div>
-<div class="btn-park">Park<br>Easy!</div>
+<% if controller_name == 'parking_spots' %>
+  <div class="btn-park">Park<br>Easy!</div>
+<% end %>
