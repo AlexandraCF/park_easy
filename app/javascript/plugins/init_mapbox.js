@@ -132,8 +132,10 @@ const initMapbox = () => {
         console.log(markers);
 
   // Button to find the nearest spot from you current location
+        const btnGo = document.querySelector(".btn-go");
         document.querySelector(".btn-park").addEventListener("click", (event) => {
           btnPark.classList.add("active-park-btn");
+          btnGo.classList.add("active-go-btn");
           fetch(`/parking_spots/closespot?lon=${lon}&lat=${lat}`)
           // .where(parking_spots.available_spaces >= 4 && parking_spots.available_spaces <= 8)
           .then(response => response.json())
