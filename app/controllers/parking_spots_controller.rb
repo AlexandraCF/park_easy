@@ -1,6 +1,5 @@
 class ParkingSpotsController < ApplicationController
   def index
-
     @parkingspots = ParkingSpot.all
 
     # the `geocoded` scope filters only parkingspots with coordinates (latitude & longitude)
@@ -14,5 +13,10 @@ class ParkingSpotsController < ApplicationController
         available_spaces: parkingspot.available_places
       }
     end
+  end
+
+  def closespot
+    @parkingspot = ParkingSpot.where("available_places > 0").near([params['lat'], params['lon']], 1).first
+    render json: @parkingspot
   end
 end

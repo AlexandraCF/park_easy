@@ -48,6 +48,7 @@ const addMarkersToMap = (map, markers) => {
 
         new mapboxgl.Marker(element)
           .setLngLat([ marker.lng, marker.lat ])
+          // .setDuration(marker.geolocate.duration)
           // .setPopup(popup)
           .addTo(map);
     };
@@ -91,7 +92,7 @@ const initMapbox = () => {
     map.addControl(geolocate);
 
 // Current position as origin starting point
-  
+
     let directions = new MapboxDirections({
        accessToken: mapboxgl.accessToken,
          unit: 'metric',
@@ -125,10 +126,21 @@ const initMapbox = () => {
 
         map.fitBounds(bounds, { padding: 70, maxZoom: 16, duration: 0 });
         directions.setOrigin(position);
+        console.log(markers);
 
+        document.querySelector(".btn-park").addEventListener("click", (event) => {
+          btnPark.classList.add("active-park-btn");
+          fetch(`/parking_spots/closespot?lon=${lon}&lat=${lat}`)
+          .then(response => response.json())
+          .then((data) =>  {
+            console.log(data);
+            directions.setDestination([data["longitude"], data["latitude"]]);
+          });
+        });
     });
   geolocate.trigger();
   const btnGo = document.querySelector(".btn-go");
+  const btnPark = document.querySelector(".btn-park");
   document.querySelectorAll(".marker").forEach(marker => {
     marker.addEventListener("click", (event) => {
       // Current position as origin starting point
@@ -137,8 +149,11 @@ const initMapbox = () => {
     })
   
   });
- // can be address in form setOrigin("12, Elm Street, NY")
- // can be address
+
+
+
+ // directions.setDestination : can be address in form setOrigin("12, Elm Street, NY")
+ // directions.setOrigin : can be address
    });
   };
 };
