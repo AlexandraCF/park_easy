@@ -21,6 +21,9 @@ class ParkingSpotsController < ApplicationController
     if params[:do] == "minus"
       parking_spot.available_places -= 1
       parking_spot.save
+    elsif params[:do] == "plus"
+      parking_spot.available_places += 1
+      parking_spot.save
     end
     render json: parking_spot
   end
