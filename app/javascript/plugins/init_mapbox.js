@@ -130,6 +130,10 @@ const initMapbox = () => {
       // Current position as origin starting point
         directions.setDestination([marker.dataset.lng, marker.dataset.lat]);
         btnGo.classList.add("active-go-btn");
+        const routeSummary = document.querySelector(".mapbox-directions-route-summary");
+        if (routeSummary) {
+          routeSummary.classList.remove("active-leaving-btn");
+        };
     })
   });
  // can be address in form setOrigin("12, Elm Street, NY")

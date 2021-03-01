@@ -37,7 +37,7 @@ import { dashboardCloseToggle } from '../components/dashboard_toggle';
 import { showContent } from '../components/bottombar';
 import { displayButtonGo } from '../components/bottombar';
 import { toggleFavourite } from '../components/toggle_favourite';
-
+import { btnTakePlace } from '../components/bottombar';
 
 document.addEventListener('turbolinks:load', () => {
   // Call your functions here, e.g:
@@ -52,6 +52,6 @@ document.addEventListener('turbolinks:load', () => {
   dashboardToggle();
   dashboardCloseToggle();
   showContent();
-  // displayButtonGo();
+  btnTakePlace();
   toggleFavourite();
 });

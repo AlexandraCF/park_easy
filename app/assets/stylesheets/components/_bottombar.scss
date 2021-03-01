@@ -50,9 +50,9 @@ a.mapboxgl-ctrl-logo {
   background-color: #467B9D;
   color: white;
   z-index: 2;
-  bottom: 8px;
-  right: 26px;
-  padding: 20px;
+  bottom: 11px;
+  right: 12px;
+  padding: 37px 38px;
   border-radius: 51%;
   font-weight: bold;
   font-size: 24px;
@@ -66,17 +66,54 @@ a.mapboxgl-ctrl-logo {
   display: inherit;
 }
 
-// 	// background-color: #A8DADC !important;
-// 	// width: 122px !important;
-// 	// color: #467B9D !important;
-// 	// font-size: 18px !important;
-// 	// display: flex;
-//  //  flex-direction: column;
-//  //  justify-content: center;
-//  //  align-items: center;
-//  //  height: 90px;
-// 	// span {
-// 	// 	z-index: 3;
-// 	// 	color: #1E3557 !important;
-// 	// 	font-size: 24px;
-// 	// 	font-weight: bold;
+// Btn parked
+
+.btn-parked {
+  display: none;
+  position: absolute;
+  background-color: #E63846;
+  color: white;
+  z-index: 2;
+  bottom: 11px;
+  right: 12px;
+  padding: 40px 18px;
+  border-radius: 51%;
+  font-weight: bold;
+  font-size: 20px;
+  box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.1);
+  &:hover {
+    box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.5);
+  }
+}
+
+.active-parked-btn {
+  display: inherit;
+}
+
+// Btn leaving
+
+.btn-leaving {
+  display: none;
+  position: absolute;
+  background-color: green;
+  color: white;
+  z-index: 2;
+  bottom: 11px;
+  right: 12px;
+  padding: 40px 18px;
+  border-radius: 51%;
+  font-weight: bold;
+  font-size: 20px;
+  box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.1);
+  &:hover {
+    box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.5);
+  }
+}
+
+.active-leaving-btn {
+  display: inherit;
+}
+
+.nondisplay-route-summary {
+  display: none;
+}
