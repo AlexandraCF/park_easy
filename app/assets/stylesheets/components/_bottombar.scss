@@ -12,6 +12,15 @@ a.mapboxgl-ctrl-logo {
   display: none;
 }
 
+.active-directions-instructions {
+  position: absolute !important;
+  z-index: 1000 !important;
+  bottom: 571px !important;
+  background-color: #1d3557 !important;
+  height: 93px !important;
+  display: inherit !important;
+}
+
 .mapbox-directions-route-summary {
 	position: absolute !important;
   z-index: 1;

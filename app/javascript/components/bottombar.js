@@ -25,6 +25,7 @@ const displayButtonGo = () => {
 
 export { displayButtonGo };
 
+
 const displayButtonPark = () => {
   const btnPark = document.querySelector(".btn-park");
   // console.log(btnPark);
@@ -37,3 +38,16 @@ const displayButtonPark = () => {
 };
 
 export { displayButtonPark };
+
+const displayInstruction = () => {
+	const btnGo = document.querySelector(".btn-go");
+	btnGo.addEventListener("click", (event) => {
+		const navigation = document.querySelector(".mapbox-directions-instructions");
+		console.log(navigation);
+		navigation.style.display = 'block';
+		navigation.classList.add("active-directions-instructions");
+
+	});
+};
+
+export { displayInstruction };
