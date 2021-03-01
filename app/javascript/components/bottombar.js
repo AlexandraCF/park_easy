@@ -38,7 +38,8 @@ const btnTakePlace = () => {
 	btnParked.addEventListener("click", () => {
 		btnParked.classList.remove("active-parked-btn");
 		btnLeaving.classList.add("active-leaving-btn");
-		// console.log(btnParked.dataset.id)
+		const navigation = document.querySelector(".mapbox-directions-instructions.active-directions-instructions");
+		navigation.style.display = 'none';
 		fetch(`http://localhost:3000/update-available-places?id=${btnGo.dataset.id}&do=minus`)
 			.then(response => response.json())
 			.then((data) => {

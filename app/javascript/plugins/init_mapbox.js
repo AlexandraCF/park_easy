@@ -22,7 +22,7 @@ const buildMap = (mapElement) => {
     container: 'map',
     style: 'mapbox://styles/mapbox/streets-v11',
     //center: [2.3820137, 48.8654838],
-    zoom: 16
+    zoom: 21,
   });
 };
 
@@ -58,11 +58,14 @@ const addMarkersToMap = (map, markers) => {
   });
 };
 
-const fitMapToMarkers = (map, markers) => {
-  const bounds = new mapboxgl.LngLatBounds();
-  markers.forEach(marker => bounds.extend([ marker.lng, marker.lat ]));
-  map.fitBounds(bounds, { padding: 70, maxZoom: 15 });
-};
+
+
+
+ const fitMapToMarkers = (map, markers) => {
+   const bounds = new mapboxgl.LngLatBounds();
+   markers.forEach(marker => bounds.extend([ marker.lng, marker.lat ]));
+   map.fitBounds(bounds, { padding: 70, maxZoom: 15 });
+ };
 
 const initMapbox = () => {
   const mapElement = document.getElementById('map');
@@ -70,26 +73,25 @@ const initMapbox = () => {
     const map = buildMap(mapElement);
     const markers = JSON.parse(mapElement.dataset.markers);
     addMarkersToMap(map, markers);
+    console.log(markers)
     // init auto geolocalisation user
-    // fitMapToMarkers(map, markers);
+/*     fitMapToMarkers(map, [{lat: 48.865487, lng: 2.382093}, {lat: 48.865083, lng: 2.382692}, {lat: 48.865603, lng: 2.384176}, {lat: 48.864839, lng: 2.385049}, {lat: 48.864037, lng: 2.383574}]); */
 
     const geolocate = new mapboxgl.GeolocateControl({
       positionOptions: {
         enableHighAccuracy: true
       },
-        trackUserLocation: true,
-        showAccuracyCircle: false
+      trackUserLocation: true,
+      showAccuracyCircle: false
     });
 
-
-// Searchbar Location tool
+    // Searchbar Location tool
     // fitMapToMarkers(map, markers);
-
     map.addControl(new MapboxGeocoder({ accessToken: mapboxgl.accessToken,
       language: "en",
       geocoder: {
-           language: "en"
-           },
+        language: "en"
+      },
       mapboxgl: mapboxgl }));
     // action of the btn geolocate
     map.addControl(geolocate);
@@ -107,54 +109,60 @@ const initMapbox = () => {
     //     };
     //   });
 
-// Current position as origin starting point
+      // Current position as origin starting point
+
 
     let directions = new MapboxDirections({
-       accessToken: mapboxgl.accessToken,
-         unit: 'metric',
-         profile: 'mapbox/driving-traffic',
-         controls: {
-           profileSwitcher: false,
-           inputs: false,
-           instructions: true
-         },
-         alternatives: true,
-         language: "en",
-         steps: true,
-         geocoder: {
-           language: "en"
-           },
+      accessToken: mapboxgl.accessToken,
+      unit: 'metric',
+      profile: 'mapbox/driving-traffic',
+      controls: {
+        profileSwitcher: false,
+        inputs: false,
+        instructions: true
+      },
+      alternatives: true,
+      language: "en",
+      annotations: [],
+      steps: true,
+      routePadding: 200,
+      geocoder: {
+        language: "en"
+      },
+      interactive: false
+      },
+      'bottom-left'
+    );
+    map.addControl(directions, 'bottom-left');
 
-          interactive: false
-       },
-       'bottom-left'
-   );
-  map.addControl(directions, 'bottom-left');
-
-   map.on('load', () => {
-    geolocate.on('geolocate', (e) => {
+    map.on('load', () => {
+      const bounds = new mapboxgl.LngLatBounds();
+        [{lat: 48.865487, lng: 2.382093}, {lat: 48.865083, lng: 2.382692}, {lat: 48.865603, lng: 2.384176}, {lat: 48.864839, lng: 2.385049}, {lat: 48.864037, lng: 2.383574}].forEach(marker => bounds.extend([ marker.lng, marker.lat ]))
+      map.fitBounds(bounds, { padding: 70, maxZoom: 16, duration: 0 });
+      geolocate.on('geolocate', (e) => {
         const lon = e.coords.longitude;
         const lat = e.coords.latitude
         const position = [lon, lat];
-        console.log(position);
-        const bounds = new mapboxgl.LngLatBounds();
-        markers.forEach(marker => bounds.extend(position));
-
-        map.fitBounds(bounds, { padding: 70, maxZoom: 16, duration: 0 });
+        console.log(position)
+        
         directions.setOrigin(position);
+
         console.log(markers);
 
   // Button to find the nearest spot from you current location
+        const btnGo = document.querySelector(".btn-go");
         document.querySelector(".btn-park").addEventListener("click", (event) => {
           btnPark.classList.add("active-park-btn");
+          btnGo.classList.add("active-go-btn");
           fetch(`/parking_spots/closespot?lon=${lon}&lat=${lat}`)
           // .where(parking_spots.available_spaces >= 4 && parking_spots.available_spaces <= 8)
           .then(response => response.json())
           .then((data) =>  {
-            console.log(data);
+
             directions.setDestination([data["longitude"], data["latitude"]]);
           });
         });
+
     });
   geolocate.trigger();
   const btnGo = document.querySelector(".btn-go");
@@ -162,7 +170,13 @@ const initMapbox = () => {
   document.querySelectorAll(".marker").forEach(marker => {
     marker.addEventListener("click", (event) => {
       // Current position as origin starting point
-        directions.setDestination([marker.dataset.lng, marker.dataset.lat]);
+          directions.setDestination([marker.dataset.lng, marker.dataset.lat]);
+      // added by alexandra
+          const bounds = new mapboxgl.LngLatBounds();
+        [{lng: 2.3789894, lat: 48.8656},{lat: marker.dataset.lat, lng: marker.dataset.lng},{lat: 48.865487, lng: 2.382093}, {lat: 48.865083, lng: 2.382692}, {lat: 48.865603, lng: 2.384176}, {lat: 48.864839, lng: 2.385049}, {lat: 48.864037, lng: 2.383574}].forEach(marker => bounds.extend([ marker.lng, marker.lat ]))
+        map.fitBounds(bounds, { padding: 70, maxZoom: 16, duration: 0 });
+      
+      // Added by Javier 
         btnGo.classList.add("active-go-btn");
         btnGo.dataset.id = marker.dataset.id
         const routeSummary = document.querySelector(".mapbox-directions-route-summary");
@@ -173,11 +187,9 @@ const initMapbox = () => {
 
   });
 
-
-
- // directions.setDestination : can be address in form setOrigin("12, Elm Street, NY")
- // directions.setOrigin : can be address
-   });
+      // directions.setDestination : can be address in form setOrigin("12, Elm Street, NY")
+      // directions.setOrigin : can be address
+    });
   };
 };
 
