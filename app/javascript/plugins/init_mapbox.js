@@ -1,6 +1,8 @@
 import mapboxgl from 'mapbox-gl';
 import MapboxGeocoder from '@mapbox/mapbox-gl-geocoder';
 import { displayButtonGo } from '../components/bottombar';
+import { displayInstruction } from '../components/bottombar';
+
 // Initialize the geolocate control.
 // var geolocate = new mapboxgl.GeolocateControl({
 //   positionOptions: {
@@ -97,8 +99,10 @@ const initMapbox = () => {
          profile: 'mapbox/driving-traffic',
          controls: {
            profileSwitcher: false,
-           inputs: false
+           inputs: false,
+           instructions: true
          },
+         alternatives: true,
          language: "en",
          steps: true,
          geocoder: {
@@ -137,6 +141,7 @@ const initMapbox = () => {
           routeSummary.classList.remove("active-leaving-btn");
         };
     })
+  
   });
  // can be address in form setOrigin("12, Elm Street, NY")
  // can be address
