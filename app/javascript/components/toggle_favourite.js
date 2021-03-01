@@ -5,4 +5,4 @@ const toggleFavourite = () => {
   /*Si la valeur de l'input n'est pas vide alors je rajoute une classe active*/
 }
 
-export {toggleFavourite};
+export { toggleFavourite };
