@@ -16,7 +16,7 @@ class ParkingSpotsController < ApplicationController
   end
 
   def closespot
-    @parkingspot = ParkingSpot.where("available_places > 0").near([params['lat'], params['lon']], 1).first
+    @parkingspot = ParkingSpot.where("available_places >= 4").near([params['lat'], params['lon']], 1).first
     render json: @parkingspot
   end
 end
