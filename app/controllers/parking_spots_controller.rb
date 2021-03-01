@@ -1,6 +1,5 @@
 class ParkingSpotsController < ApplicationController
   def index
-
     @parkingspots = ParkingSpot.all
 
     # the `geocoded` scope filters only parkingspots with coordinates (latitude & longitude)
@@ -19,9 +18,10 @@ class ParkingSpotsController < ApplicationController
 
   def update_available_places
     parking_spot = ParkingSpot.find(params[:id])
-
-    if params[:do] == "plus"
-      render json: parking_spot
+    if params[:do] == "minus"
+      parking_spot.available_places -= 1
+      parking_spot.save
     end
+    render json: parking_spot
   end
 end

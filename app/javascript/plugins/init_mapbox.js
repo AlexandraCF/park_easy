@@ -45,6 +45,8 @@ const addMarkersToMap = (map, markers) => {
         element.dataset.lat = marker.lat;
         element.dataset.lng = marker.lng;
         element.dataset.id = marker.parking_spot_id;
+        element.id = `marker-${marker.parking_spot_id}`;
+        console.log(element.id);
 
 
         new mapboxgl.Marker(element)

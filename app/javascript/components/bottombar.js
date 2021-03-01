@@ -33,15 +33,26 @@ const btnTakePlace = () => {
 	btnGo.addEventListener("click", () => {
 		btnGo.classList.remove("active-go-btn");
 		btnParked.classList.add("active-parked-btn");
-		console.log(btnGo.dataset.id)
-		fetch(`http://localhost:3000/update-available-places?id=${btnGo.dataset.id}&do=plus`)
-			.then(response => response.json())
-			.then((data) => console.log(data))
+		// console.log(btnGo.dataset.id)
+		// fetch(`http://localhost:3000/update-available-places?id=${btnGo.dataset.id}&do=plus`)
+		// 	.then(response => response.json())
+		// 	.then((data) => console.log(data));
+			// .then((data) => console.log(data.available_places));
 	});
 
 	btnParked.addEventListener("click", () => {
 		btnParked.classList.remove("active-parked-btn");
 		btnLeaving.classList.add("active-leaving-btn");
+		// console.log(btnParked.dataset.id)
+		fetch(`http://localhost:3000/update-available-places?id=${btnGo.dataset.id}&do=minus`)
+			.then(response => response.json())
+			.then((data) => {
+				console.log(data)
+				const marker = document.querySelector(`#marker-${data.id}`);
+				marker.innerText = data.available_places;
+			});
+			// .then((data) => console.log(data));
+
 		const routeSummary = document.querySelector(".mapbox-directions-route-summary");
 		// console.log(routeSummary);
 		routeSummary.classList.add("nondisplay-route-summary");
