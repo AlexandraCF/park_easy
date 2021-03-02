@@ -80,7 +80,7 @@ const addMarkersToMap = (map, markers) => {
       mapboxgl: mapboxgl
     });
 
-    
+
 
     map.addControl(test);
     test.on('result', (e) => {
@@ -100,7 +100,7 @@ const addMarkersToMap = (map, markers) => {
           const newelement = document.createElement('fav');
           newelement.className = 'marker';
           newelement.style.backgroundImage = `url('https://cdn1.iconfinder.com/data/icons/color-bold-style/21/14_2-512.png')`;
-          newelement.style.backgroundSize = 'cover'; 
+          newelement.style.backgroundSize = 'cover';
           newelement.style.width = '41px';
           newelement.style.height = '48px';
           newelement.style.paddingTop = "7px";
@@ -110,7 +110,7 @@ const addMarkersToMap = (map, markers) => {
           new mapboxgl.Marker(newelement)
           .setLngLat([ JSON.parse(findmarker.dataset.coordinates).lng, JSON.parse(findmarker.dataset.coordinates).lat ])
           .addTo(map);
-        
+
 
 
           const printPin = document.querySelectorAll('.fixtomap');
@@ -120,9 +120,9 @@ const addMarkersToMap = (map, markers) => {
               event.preventDefault();
               const disabledActive = document.querySelector('.card-test-collapse');
               const disabledOverlay = document.querySelector('.menu-overlay');
-    
-              disabledActive.classList.remove('active')
-              disabledOverlay.classList.remove('active')
+
+              disabledActive.classList.remove('active');
+              disabledOverlay.classList.remove('active');
             });
           });
         });
@@ -140,10 +140,8 @@ const addMarkersToMap = (map, markers) => {
           disabledActive.classList.remove('active')
           disabledOverlay.classList.remove('active')
     });
-
   });
-  
-  }
+  };
 
 
   const initDirections = (map) => {
@@ -221,7 +219,7 @@ const initMapbox = () => {
 
         //console.log(position)
 
- 
+
 
         directions.setOrigin(position);
         // Button to find the nearest spot from you current location
@@ -238,12 +236,6 @@ const initMapbox = () => {
             });
         });
       });
-
-
-
-      
-
-    });
 
 
       geolocate.trigger();
