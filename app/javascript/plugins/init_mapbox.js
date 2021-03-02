@@ -73,7 +73,7 @@ const initMapbox = () => {
     const map = buildMap(mapElement);
     const markers = JSON.parse(mapElement.dataset.markers);
     addMarkersToMap(map, markers);
-    console.log(markers)
+    // console.log(markers)
     // init auto geolocalisation user
 /*     fitMapToMarkers(map, [{lat: 48.865487, lng: 2.382093}, {lat: 48.865083, lng: 2.382692}, {lat: 48.865603, lng: 2.384176}, {lat: 48.864839, lng: 2.385049}, {lat: 48.864037, lng: 2.383574}]); */
 
@@ -87,6 +87,8 @@ const initMapbox = () => {
 
     // Searchbar Location tool
     // fitMapToMarkers(map, markers);
+
+    //added by yoann
     const test = new MapboxGeocoder({ accessToken: mapboxgl.accessToken,
       language: "en",
       geocoder: {
@@ -94,16 +96,70 @@ const initMapbox = () => {
       },
       mapboxgl: mapboxgl
     });
-    //ok
+    
+
+
 
     map.addControl(test)
     test.on('result', (e) => {
-      console.log(e.result)
+      // console.log(e.result)
       const marker = new mapboxgl.Marker({ draggable: true, color: "red" })
       .setLngLat(e.result.center)
-      .setPopup(new mapboxgl.Popup().setHTML(`<form class="simple_form new_favourite-2" id="new_favourite" novalidate="novalidate" action="/favourites" accept-charset="UTF-8" method="post"><div class="login-form form-inputs"><div class="form-group string required favourite_address"><label class="string required" for="favourite_address">Place</label><input class="form-control string required" type="text" name="favourite[address]" value="${e.result.place_name}" id="favourite_address"></div></div><div class="form-actions"><input type="submit" name="commit" value="Add as favourite" class="btn btn-signup-signuppage" data-disable-with="Address added"></div</form>`))    
+      .setPopup(new mapboxgl.Popup().setHTML(`<form class="simple_form new_favourite-2" id="new_favourite" novalidate="novalidate" action="/favourites" accept-charset="UTF-8" method="post"><div class="login-form form-inputs"><div class="form-group-2 string required favourite_address"><label class="string required" for="favourite_address">Place</label><input class="form-control string required" type="text" name="favourite[address]" value="${e.result.place_name}" id="favourite_address"></div></div><div class="form-actions"><input type="submit" name="commit" value="Add as favourite" id="add-favourite" class="btn btn-signup-signuppage" data-disable-with="Address added"></div</form>`))    
       .addTo(map)
+
     });
+
+    const findmarkers = document.querySelectorAll('.fixtomap');
+    //console.log(findmarkers);
+      findmarkers.forEach((findmarker) => {
+        findmarker.addEventListener("click", (event) => {
+          event.preventDefault();
+          const newelement = document.createElement('fav');
+          newelement.className = 'marker';
+          newelement.style.backgroundImage = `url('https://cdn1.iconfinder.com/data/icons/color-bold-style/21/14_2-512.png')`;
+          newelement.style.backgroundSize = 'cover'; 
+          newelement.style.width = '41px';
+          newelement.style.height = '48px';
+          newelement.style.paddingTop = "7px";
+          // newelement.dataset.lat = `${e.result.center[1]}`;
+          // newelement.dataset.lng = `${e.result.center[2]}`;
+          //console.log(newelement);
+          new mapboxgl.Marker(newelement)
+          .setLngLat([ JSON.parse(findmarker.dataset.coordinates).lng, JSON.parse(findmarker.dataset.coordinates).lat ])
+          .addTo(map);
+        
+
+
+          const printPin = document.querySelectorAll('.fixtomap');
+          //console.log(printPin);
+          printPin.forEach((putmarker) => {
+            putmarker.addEventListener("click", (event) => {
+              event.preventDefault();
+              const disabledActive = document.querySelector('.card-test-collapse');
+              const disabledOverlay = document.querySelector('.menu-overlay');
+    
+              disabledActive.classList.remove('active')
+              disabledOverlay.classList.remove('active')
+            });
+          });
+        });
+      });
+
+      const leavepage = document.querySelectorAll('.fordeletefavs');
+      //console.log(leavepage);
+      leavepage.forEach((deletecross) => {
+        deletecross.addEventListener("click", (event) => {
+          event.preventDefault();
+
+          const disabledActive = document.querySelector('.card-test-collapse');
+          const disabledOverlay = document.querySelector('.menu-overlay');
+
+          disabledActive.classList.remove('active')
+          disabledOverlay.classList.remove('active')
+    });
+  });
+  
 
     // action of the btn geolocate
     map.addControl(geolocate);
@@ -159,11 +215,11 @@ const initMapbox = () => {
         const lon = e.coords.longitude;
         const lat = e.coords.latitude
         const position = [lon, lat];
-        console.log(position)
+        //console.log(position)
 
         directions.setOrigin(position);
 
-        console.log(markers);
+       // console.log(markers);
 
   // Button to find the nearest spot from you current location
         const btnGo = document.querySelector(".btn-go");
@@ -178,6 +234,9 @@ const initMapbox = () => {
             directions.setDestination([data["longitude"], data["latitude"]]);
           });
         });
+
+
+      
 
     });
   geolocate.trigger();
