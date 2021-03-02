@@ -1,5 +1,5 @@
 <% current_user.favourites.each do |favourite| %>
-  <h2 class="fav-h2"><i class="fa fa-map-marker" aria-hidden="true"></i> <%= link_to favourite.address %> 
-  <%= link_to favourite_path(favourite), method: :delete do %> <i class="fa fa-times"></i></h2>
+  <h2 class="fav-h2"><i class="fa fa-map-marker" aria-hidden="true"></i> <%= link_to favourite.address, "#", class:"fixtomap", data: { coordinates: {lat: favourite.latitude, lng: favourite.longitude}.to_json} %> 
+  <%= link_to favourite_path(favourite), class:"fordeletefavs", method: :delete do %><i class="fa fa-times"></i></h2>
   <% end %>
 <% end %>
