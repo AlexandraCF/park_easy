@@ -19,9 +19,11 @@ a.mapboxgl-ctrl-logo {
 .active-directions-instructions {
   position: absolute !important;
   z-index: 1000 !important;
-  bottom: 571px !important;
+  bottom: 71px !important;
+  left: -9px !important;
+  right: -64px !important;
   background-color: #1d3557 !important;
-  height: 93px !important;
+  height: 77px !important;
   display: inherit;
 }
 
@@ -85,15 +87,17 @@ a.mapboxgl-ctrl-logo {
 .btn-parked {
   display: none;
   position: absolute;
-  background-color: #E63846;
-  color: white;
+  background-color: #A8DADC;
+  color: #1D3557;
   z-index: 2;
   bottom: 11px;
+  width: 118px;
+  height: 118px;
   right: 12px;
-  padding: 40px 18px;
-  border-radius: 51%;
+  padding: 42px 10px;
+  border-radius: 50%;
   font-weight: bold;
-  font-size: 20px;
+  font-size: 24px;
   box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.1);
   &:hover {
     box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.5);
@@ -107,18 +111,21 @@ a.mapboxgl-ctrl-logo {
 // Btn Park (to get straight to the closest marker)
 
 .btn-park {
-  color: #A8DADC;
-  background-color: #1D3557;
+  color: #f1faee;
+  background-color: #457b9d;
   text-align: center;
   text-decoration: none;
   font-weight: bold;
-  font-size: 24px;
+  font-size: 32px;
+  width: 84%;
+  height: 7%;
   position: absolute;
   z-index: 2;
   bottom: 8px;
-  right: 26px;
-  padding: 20px;
-  border-radius: 51%;
+  right: 8%;
+  left: 8%;
+  padding: 6px 10px 10px 10px;
+  border-radius: 10px;
   &:hover {
     box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.5);
   }
