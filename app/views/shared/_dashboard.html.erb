@@ -2,7 +2,8 @@
 	<div><%= image_tag "cancel.svg", class: "menu-close-toggler" %></div>
 	<div class="dashboard-container">
 	  <div class="intro-dashboard">
-	    <% if current_user.photo.key %>
+
+	    <% if current_user.photo.attached? %>
 	    	<%= cl_image_tag current_user.photo.key, crop: :fill, class: "avatar-bordered" %>
 	    <% end %>
 	    <h2 class="first-name-user-dashboard"><%= " #{current_user.first_name}"" " "#{current_user.last_name}" %></h2>

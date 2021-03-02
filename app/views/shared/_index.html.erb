@@ -1,7 +1,6 @@
 <% current_user.favourites.each do |favourite| %>
   <p class="fav-h2">
-	  <%= favourite.address %> 
+	  <%= link_to favourite.address %>
 	  <%= link_to favourite_path(favourite), method: :delete do %><i class="fa fa-times"></i>
   </p>
-  <% end %>
 <% end %>

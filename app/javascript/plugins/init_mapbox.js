@@ -3,18 +3,6 @@ import MapboxGeocoder from '@mapbox/mapbox-gl-geocoder';
 import { displayButtonGo } from '../components/bottombar';
 import { displayInstruction } from '../components/bottombar';
 
-// Initialize the geolocate control.
-// var geolocate = new mapboxgl.GeolocateControl({
-//   positionOptions: {
-//     enableHighAccuracy: true
-//   },
-//   trackUserLocation: true
-// });
-// // Add the control to the map.
-// map.addControl(geolocate);
-// map.on('load', function() {
-//   geolocate.trigger();
-// });
 
 const buildMap = (mapElement) => {
   mapboxgl.accessToken = mapElement.dataset.mapboxApiKey;
@@ -61,22 +49,13 @@ const addMarkersToMap = (map, markers) => {
 
 
 
- const fitMapToMarkers = (map, markers) => {
-   const bounds = new mapboxgl.LngLatBounds();
-   markers.forEach(marker => bounds.extend([ marker.lng, marker.lat ]));
-   map.fitBounds(bounds, { padding: 70, maxZoom: 15 });
- };
+  const fitMapToMarkers = (map, markers) => {
+    const bounds = new mapboxgl.LngLatBounds();
+    markers.forEach(marker => bounds.extend([ marker.lng, marker.lat ]));
+    map.fitBounds(bounds, { padding: 70, maxZoom: 15 });
+  };
 
-const initMapbox = () => {
-  const mapElement = document.getElementById('map');
-  if (mapElement) {
-    const map = buildMap(mapElement);
-    const markers = JSON.parse(mapElement.dataset.markers);
-    addMarkersToMap(map, markers);
-    console.log(markers)
-    // init auto geolocalisation user
-/*     fitMapToMarkers(map, [{lat: 48.865487, lng: 2.382093}, {lat: 48.865083, lng: 2.382692}, {lat: 48.865603, lng: 2.384176}, {lat: 48.864839, lng: 2.385049}, {lat: 48.864037, lng: 2.383574}]); */
-
+  const geolocation = (map) => {
     const geolocate = new mapboxgl.GeolocateControl({
       positionOptions: {
         enableHighAccuracy: true
@@ -85,8 +64,13 @@ const initMapbox = () => {
       showAccuracyCircle: false
     });
 
+    // action of the btn geolocate
+    map.addControl(geolocate);
+    return geolocate;
+  }
+
+  const searchbar = (map) => {
     // Searchbar Location tool
-    // fitMapToMarkers(map, markers);
     const test = new MapboxGeocoder({ accessToken: mapboxgl.accessToken,
       language: "en",
       geocoder: {
@@ -94,25 +78,18 @@ const initMapbox = () => {
       },
       mapboxgl: mapboxgl
     });
-    //ok
 
-    map.addControl(test)
+    map.addControl(test);
     test.on('result', (e) => {
-      console.log(e.result)
-      const marker = new mapboxgl.Marker({ draggable: true, color: "red" })
+      const marker = new mapboxgl.Marker({ draggable: true, color: "#E63946" })
       .setLngLat(e.result.center)
-      .setPopup(new mapboxgl.Popup().setHTML(`<form class="simple_form new_favourite-2" id="new_favourite" novalidate="novalidate" action="/favourites" accept-charset="UTF-8" method="post"><input type="hidden" name="authenticity_token" value="vAhVWFFqSUOk4KQyv7vmL22LfGU3KRiNRsOlC9oqMSrQEkFb2FSZ+38pN5cjsm/65wO7jrKP3GvaOLIj4MY2sw=="><div class="login-form form-inputs"><div class="form-group string required favourite_address"><label class="string required" for="favourite_address">Place</label><input class="form-control string required" type="text" name="favourite[address]" value="${e.result.place_name}" id="favourite_address"></div></div><div class="form-actions"><input type="submit" name="commit" value="Add as favourite" class="btn btn-signup-signuppage" data-disable-with="Address added"></div</form>`))    
+      .setPopup(new mapboxgl.Popup().setHTML(`<form class="simple_form new_favourite-2" id="new_favourite" novalidate="novalidate" action="/favourites" accept-charset="UTF-8" method="post"><div class="login-form form-inputs"><div class="form-group string required favourite_address"><label class="string required" for="favourite_address">Place</label><input class="form-control string required" type="text" name="favourite[address]" value="${e.result.place_name}" id="favourite_address"></div></div><div class="form-actions"><input type="submit" name="commit" value="Add as favourite" class="btn btn-signup-signuppage" data-disable-with="Address added"></div</form>`))
       .addTo(map)
     });
+  }
 
-    // action of the btn geolocate
-    map.addControl(geolocate);
-
-
-
-      // Current position as origin starting point
-
-
+  const initDirections = (map) => {
+    // Current position as origin starting point
     let directions = new MapboxDirections({
       accessToken: mapboxgl.accessToken,
       unit: 'metric',
@@ -122,7 +99,6 @@ const initMapbox = () => {
         inputs: true,
         instructions: true
       },
-      alternatives: true,
       language: "en",
       annotations: [],
       steps: true,
@@ -136,83 +112,92 @@ const initMapbox = () => {
     );
     map.addControl(directions, 'bottom-left');
 
+    return directions;
+  }
+
+const initMapbox = () => {
+  const mapElement = document.getElementById('map');
+  if (mapElement) {
+    const map = buildMap(mapElement);
+    const markers = JSON.parse(mapElement.dataset.markers);
+    addMarkersToMap(map, markers);
+
+    searchbar(map);
+
+    const geolocate = geolocation(map);
+
+    const directions = initDirections(map);
+
+    const btnClear = document.querySelector(".btn-clear");
+    const btnGo = document.querySelector(".btn-go");
+    const btnParked = document.querySelector(".btn-parked");
+    const btnPark = document.querySelector(".btn-park");
+    console.log(btnPark);
      //  Btn Clear All
     document.querySelector(".btn-clear").addEventListener("click", (event) => {
-      const btnClear = document.querySelector(".btn-clear");
       btnClear.classList.add("active-clear-btn");
-      document.querySelector('.mapbox-directions-destination .geocoder-icon-close').click()
-        const btnGo = document.querySelector(".btn-go");
-        btnGo.classList.remove("active-go-btn");
-        const btnParked = document.querySelector(".btn-parked");
-        btnParked.classList.remove("active-parked-btn");
-        const btnPark = document.querySelector(".btn-park");
-        btnPark.classList.add("active-parked-btn");
-        // ReGeolocate User clicking twice stop geolocalization
-        geolocate.trigger();
-      });
+        const markersapp = document.querySelectorAll("pin");
+        markersapp.forEach((marker) => {
+          marker.style.display = 'block';
+          });
+
+      if (document.querySelector('.mapbox-directions-destination .geocoder-icon-close')) {
+        document.querySelector('.mapbox-directions-destination .geocoder-icon-close').click();
+      }
+      btnGo.classList.remove("active-go-btn");
+      btnParked.classList.remove("active-parked-btn");
+      btnPark.classList.remove("active-park-btn");
+      btnPark.style.display = 'block';
+    });
+
 
     map.on('load', () => {
       const bounds = new mapboxgl.LngLatBounds();
-        [{lat: 48.865487, lng: 2.382093}, {lat: 48.865083, lng: 2.382692}, {lat: 48.865603, lng: 2.384176}, {lat: 48.864839, lng: 2.385049}, {lat: 48.864037, lng: 2.383574}].forEach(marker => bounds.extend([ marker.lng, marker.lat ]))
+      [{lat: 48.865487, lng: 2.382093}, {lat: 48.865083, lng: 2.382692}, {lat: 48.865603, lng: 2.384176}, {lat: 48.864839, lng: 2.385049}, {lat: 48.864037, lng: 2.383574}].forEach(marker => bounds.extend([ marker.lng, marker.lat ]))
       map.fitBounds(bounds, { padding: 70, maxZoom: 16, duration: 0 });
+
       geolocate.on('geolocate', (e) => {
         const lon = e.coords.longitude;
         const lat = e.coords.latitude
         const position = [lon, lat];
-        console.log(position)
-
         directions.setOrigin(position);
-
-        console.log(markers);
-
-  // Button to find the nearest spot from you current location
-        const btnGo = document.querySelector(".btn-go");
+        // Button to find the nearest spot from you current location
         document.querySelector(".btn-park").addEventListener("click", (event) => {
-          btnPark.classList.add("active-park-btn");
+          // btnPark.classList.add("active-park-btn");
+          btnPark.style.display = 'none';
+
           btnGo.classList.add("active-go-btn");
           fetch(`/parking_spots/closespot?lon=${lon}&lat=${lat}`)
-          // .where(parking_spots.available_spaces >= 4 && parking_spots.available_spaces <= 8)
-          .then(response => response.json())
-          .then((data) =>  {
-
-            directions.setDestination([data["longitude"], data["latitude"]]);
-          });
+            .then(response => response.json())
+            .then((data) =>  {
+              directions.setDestination([data["longitude"], data["latitude"]]);
+            });
         });
+      });
 
-    });
-  geolocate.trigger();
-  const btnGo = document.querySelector(".btn-go");
-  const btnPark = document.querySelector(".btn-park");
-  document.querySelectorAll(".marker").forEach(marker => {
-    marker.addEventListener("click", (event) => {
-      // Current position as origin starting point
+      geolocate.trigger();
+
+      document.querySelectorAll(".marker").forEach(marker => {
+        marker.addEventListener("click", (event) => {
+          // Current position as origin starting point
           directions.setDestination([marker.dataset.lng, marker.dataset.lat]);
-      // added by alexandra
+          // added by alexandra
           const bounds = new mapboxgl.LngLatBounds();
-        [{lng: 2.3789894, lat: 48.8656},{lat: marker.dataset.lat, lng: marker.dataset.lng},{lat: 48.865487, lng: 2.382093}, {lat: 48.865083, lng: 2.382692}, {lat: 48.865603, lng: 2.384176}, {lat: 48.864839, lng: 2.385049}, {lat: 48.864037, lng: 2.383574}].forEach(marker => bounds.extend([ marker.lng, marker.lat ]))
-        map.fitBounds(bounds, { padding: 70, maxZoom: 16, duration: 0 });
+          [{lng: 2.3789894, lat: 48.8656},{lat: marker.dataset.lat, lng: marker.dataset.lng},{lat: 48.865487, lng: 2.382093}, {lat: 48.865083, lng: 2.382692}, {lat: 48.865603, lng: 2.384176}, {lat: 48.864839, lng: 2.385049}, {lat: 48.864037, lng: 2.383574}].forEach(marker => bounds.extend([ marker.lng, marker.lat ]))
+          map.fitBounds(bounds, { padding: 70, maxZoom: 16, duration: 0 });
 
-      // Added by Javier
-        btnGo.classList.add("active-go-btn");
-        btnGo.dataset.id = marker.dataset.id
-        const routeSummary = document.querySelector(".mapbox-directions-route-summary");
-        if (routeSummary) {
-          routeSummary.classList.remove("active-leaving-btn");
-        };
-    })
-  });
-
-
-  });
-
-      // directions.setDestination : can be address in form setOrigin("12, Elm Street, NY")
-      // directions.setOrigin : can be address
+          // Added by Javier
+          btnGo.classList.add("active-go-btn");
+          btnGo.dataset.id = marker.dataset.id
+          const routeSummary = document.querySelector(".mapbox-directions-route-summary");
+          if (routeSummary) {
+            routeSummary.classList.remove("active-leaving-btn");
+          };
+        })
+      });
+    });
   };
 };
-
-//            Pseudo Code Rapid Park Button
-
-// #
 
 
 
