@@ -198,7 +198,7 @@
 	text-align: center;
   }
 
-.mapboxgl-popup {   
+.mapboxgl-popup {
   position: relative;
   /*background: #1d3557;*/
   color: #1d3557;
@@ -219,7 +219,7 @@
 	height: 196px;
 	font-weight: bold;
 }
-  
+
 .mapboxgl-popup-close-button {
 	font-size: 2rem;
 	color: burlywood;
@@ -231,10 +231,10 @@
 	cursor: pointer;
 	background-color: transparent;
   }
-  
-.form-group {
+
+.form-group-2 {
 	margin-bottom: 0.4rem;
-	// margin-top: -50px;
+	margin-top: -50px;
 }
 
 .form-control {
@@ -253,6 +253,7 @@
   border-radius: 2px;*/
 }
 
+
 // Top dashboard
 
 .first-name-user-dashboard {
@@ -264,3 +265,9 @@
 .email-user-dashboard {
 	margin-bottom: 3px;
 }
+
+.fixtomap {
+  text-decoration: none;
+  color: #1d3557;
+}
+
