@@ -91,9 +91,15 @@ const displayInstruction = () => {
 	btnGo.addEventListener("click", (event) => {
 		const navigation = document.querySelector(".mapbox-directions-instructions");
 		console.log(navigation);
+		const markersnone = document.querySelectorAll("pin");
+		console.log(markersnone);
 		navigation.style.display = 'block';
 		navigation.classList.add("active-directions-instructions");
-
+		markersnone.forEach((marker) => {
+		marker.style.display = 'none';
+		//markersnone.classList.add("hide-markers-map");
+		document.getElementById(`marker-${btnGo.dataset.id}`).style.display = 'block';
+		});
 	});
 };
 

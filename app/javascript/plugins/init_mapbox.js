@@ -99,7 +99,6 @@ const addMarkersToMap = (map, markers) => {
         inputs: true,
         instructions: true
       },
-      alternatives: true,
       language: "en",
       annotations: [],
       steps: true,
@@ -137,6 +136,11 @@ const initMapbox = () => {
      //  Btn Clear All
     document.querySelector(".btn-clear").addEventListener("click", (event) => {
       btnClear.classList.add("active-clear-btn");
+        const markersapp = document.querySelectorAll("pin");
+        markersapp.forEach((marker) => {
+          marker.style.display = 'block';
+          });
+
       if (document.querySelector('.mapbox-directions-destination .geocoder-icon-close')) {
         document.querySelector('.mapbox-directions-destination .geocoder-icon-close').click();
       }
@@ -145,6 +149,7 @@ const initMapbox = () => {
       btnPark.classList.remove("active-park-btn");
       btnPark.style.display = 'block';
     });
+
 
     map.on('load', () => {
       const bounds = new mapboxgl.LngLatBounds();
