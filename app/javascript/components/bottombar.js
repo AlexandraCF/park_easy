@@ -97,6 +97,7 @@ const displayInstruction = () => {
 		markersnone.forEach((marker) => {
 		marker.style.display = 'none';
 		//markersnone.classList.add("hide-markers-map");
+		document.getElementById(`marker-${btnGo.dataset.id}`).style.display = 'block';
 		});
 	});
 };

@@ -122,7 +122,6 @@ const initMapbox = () => {
         inputs: true,
         instructions: true
       },
-      alternatives: true,
       language: "en",
       annotations: [],
       steps: true,
@@ -147,6 +146,10 @@ const initMapbox = () => {
         btnParked.classList.remove("active-parked-btn");
         const btnPark = document.querySelector(".btn-park");
         btnPark.classList.add("active-parked-btn");
+        const markersapp = document.querySelectorAll("pin");
+        markersapp.forEach((marker) => {
+          marker.style.display = 'block';
+          });
         // ReGeolocate User clicking twice stop geolocalization
         geolocate.trigger();
       });
