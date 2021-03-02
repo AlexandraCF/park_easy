@@ -78,7 +78,8 @@ const displayButtonPark = () => {
   const markerBtnPark = document.querySelectorAll(".marker.mapboxgl-marker.mapboxgl-marker-anchor-center");
   markerBtnPark.forEach((marker) => {
     marker.addEventListener("click", () => {
-      btnPark.classList.add("active-park-btn");
+      // btnPark.classList.add("active-park-btn");
+      btnPark.style.display = 'none';
     });
   });
 };
@@ -90,9 +91,15 @@ const displayInstruction = () => {
 	btnGo.addEventListener("click", (event) => {
 		const navigation = document.querySelector(".mapbox-directions-instructions");
 		console.log(navigation);
+		const markersnone = document.querySelectorAll("pin");
+		console.log(markersnone);
 		navigation.style.display = 'block';
 		navigation.classList.add("active-directions-instructions");
-
+		markersnone.forEach((marker) => {
+		marker.style.display = 'none';
+		//markersnone.classList.add("hide-markers-map");
+		document.getElementById(`marker-${btnGo.dataset.id}`).style.display = 'block';
+		});
 	});
 };
 
