@@ -97,17 +97,18 @@ const initMapbox = () => {
     map.addControl(geolocate);
 
     //  Btn Clear All
-    // document.querySelector(".btn-clear").addEventListener("click", (event) => {
-    //   const btnClear = document.querySelector(".btn-clear");
-    //   btnClear.classList.add("active-clear-btn");
+    document.querySelector(".btn-clear").addEventListener("click", (event) => {
+      // console.log("hhelo");
+      const btnClear = document.querySelector(".btn-clear");
+      btnClear.classList.add("active-clear-btn");
     //   var directionsDisplay;
     //     if(directionsDisplay != null) {
     //       directionsDisplay.setMap(null);
     //       directionsDisplay = null;
     //       map.setZoom(8);
     //       map.setCenter();
-    //     };
-    //   });
+        // };
+      });
 
       // Current position as origin starting point
 
