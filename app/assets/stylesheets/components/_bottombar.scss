@@ -111,20 +111,21 @@ a.mapboxgl-ctrl-logo {
 // Btn Park (to get straight to the closest marker)
 
 .btn-park {
-  color: #A8DADC;
-  background-color: #1D3557;
+  color: #f1faee;
+  background-color: #457b9d;
   text-align: center;
   text-decoration: none;
   font-weight: bold;
-  font-size: 24px;
-  width: 118px;
-  height: 118px;
+  font-size: 32px;
+  width: 84%;
+  height: 7%;
   position: absolute;
   z-index: 2;
   bottom: 8px;
-  right: 26px;
-  padding: 20px;
-  border-radius: 51%;
+  right: 8%;
+  left: 8%;
+  padding: 6px 10px 10px 10px;
+  border-radius: 10%;
   &:hover {
     box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.5);
   }
@@ -195,10 +196,3 @@ a.mapboxgl-ctrl-logo {
   display: inherit;
 }
 
-/* border-radius: 10px;
-width: 90%;
-height: 8%;
-justify-content: center;
-right: 5%;
-font-size: 32px;
-padding: 10px 10px 10px 10px; */
