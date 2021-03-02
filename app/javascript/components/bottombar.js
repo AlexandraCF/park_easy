@@ -78,7 +78,8 @@ const displayButtonPark = () => {
   const markerBtnPark = document.querySelectorAll(".marker.mapboxgl-marker.mapboxgl-marker-anchor-center");
   markerBtnPark.forEach((marker) => {
     marker.addEventListener("click", () => {
-      btnPark.classList.add("active-park-btn");
+      // btnPark.classList.add("active-park-btn");
+      btnPark.style.display = 'none';
     });
   });
 };

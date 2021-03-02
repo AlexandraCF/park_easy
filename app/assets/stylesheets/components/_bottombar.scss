@@ -111,6 +111,7 @@ a.mapboxgl-ctrl-logo {
 // Btn Park (to get straight to the closest marker)
 
 .btn-park {
+  display: inherit;
   color: #f1faee;
   background-color: #457b9d;
   text-align: center;
@@ -134,6 +135,14 @@ a.mapboxgl-ctrl-logo {
 .active-park-btn {
   display: none;
 }
+
+.active-park-btn-add {
+  display: block;
+}
+
+// .appear-park-btn {
+//   display: inherit;
+// }
 
 // Btn leaving
 
