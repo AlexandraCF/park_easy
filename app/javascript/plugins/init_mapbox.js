@@ -191,7 +191,7 @@ const initMapbox = () => {
 
       // directions.setDestination : can be address in form setOrigin("12, Elm Street, NY")
       // directions.setOrigin : can be address
-    });
+
   };
 };
 
