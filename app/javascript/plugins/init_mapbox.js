@@ -96,19 +96,7 @@ const initMapbox = () => {
     // action of the btn geolocate
     map.addControl(geolocate);
 
-    //  Btn Clear All
-    document.querySelector(".btn-clear").addEventListener("click", (event) => {
-      // console.log("hhelo");
-      const btnClear = document.querySelector(".btn-clear");
-      btnClear.classList.add("active-clear-btn");
-    //   var directionsDisplay;
-    //     if(directionsDisplay != null) {
-    //       directionsDisplay.setMap(null);
-    //       directionsDisplay = null;
-    //       map.setZoom(8);
-    //       map.setCenter();
-        // };
-      });
+
 
       // Current position as origin starting point
 
@@ -119,7 +107,7 @@ const initMapbox = () => {
       profile: 'mapbox/driving-traffic',
       controls: {
         profileSwitcher: false,
-        inputs: false,
+        inputs: true,
         instructions: true
       },
       alternatives: true,
@@ -136,6 +124,21 @@ const initMapbox = () => {
     );
     map.addControl(directions, 'bottom-left');
 
+     //  Btn Clear All
+    document.querySelector(".btn-clear").addEventListener("click", (event) => {
+      const btnClear = document.querySelector(".btn-clear");
+      btnClear.classList.add("active-clear-btn");
+      document.querySelector('.mapbox-directions-destination .geocoder-icon-close').click()
+        const btnGo = document.querySelector(".btn-go");
+        btnGo.classList.remove("active-go-btn");
+        const btnParked = document.querySelector(".btn-parked");
+        btnParked.classList.remove("active-parked-btn");
+        const btnPark = document.querySelector(".btn-park");
+        btnPark.classList.add("active-parked-btn");
+        // ReGeolocate User clicking twice stop geolocalization
+        geolocate.trigger();
+      });
+
     map.on('load', () => {
       const bounds = new mapboxgl.LngLatBounds();
         [{lat: 48.865487, lng: 2.382093}, {lat: 48.865083, lng: 2.382692}, {lat: 48.865603, lng: 2.384176}, {lat: 48.864839, lng: 2.385049}, {lat: 48.864037, lng: 2.383574}].forEach(marker => bounds.extend([ marker.lng, marker.lat ]))
@@ -145,7 +148,7 @@ const initMapbox = () => {
         const lat = e.coords.latitude
         const position = [lon, lat];
         console.log(position)
-        
+
         directions.setOrigin(position);
 
         console.log(markers);
@@ -176,8 +179,8 @@ const initMapbox = () => {
           const bounds = new mapboxgl.LngLatBounds();
         [{lng: 2.3789894, lat: 48.8656},{lat: marker.dataset.lat, lng: marker.dataset.lng},{lat: 48.865487, lng: 2.382093}, {lat: 48.865083, lng: 2.382692}, {lat: 48.865603, lng: 2.384176}, {lat: 48.864839, lng: 2.385049}, {lat: 48.864037, lng: 2.383574}].forEach(marker => bounds.extend([ marker.lng, marker.lat ]))
         map.fitBounds(bounds, { padding: 70, maxZoom: 16, duration: 0 });
-      
-      // Added by Javier 
+
+      // Added by Javier
         btnGo.classList.add("active-go-btn");
         btnGo.dataset.id = marker.dataset.id
         const routeSummary = document.querySelector(".mapbox-directions-route-summary");
