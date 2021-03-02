@@ -65,6 +65,7 @@ const btnTakePlace = () => {
 				const marker = document.querySelector(`#marker-${data.id}`);
 				marker.innerText = data.available_places;
 			});
+
 	});
 };
 
