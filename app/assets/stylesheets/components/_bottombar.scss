@@ -24,7 +24,8 @@ a.mapboxgl-ctrl-logo {
 .mapbox-directions-route-summary {
 	position: absolute !important;
   z-index: 1;
-  width: 377px !important;
+  // width: 377px !important;
+  width: 100vw !important;
   background-color: white !important;
   color: #fff;
   padding: 5px 10px;
@@ -130,7 +131,7 @@ a.mapboxgl-ctrl-logo {
   position: absolute;
   background-color: green;
   color: white;
-  z-index: 2;
+  z-index: 3;
   bottom: 11px;
   right: 12px;
   padding: 40px 18px;

@@ -1,4 +1,3 @@
-
 const showContent = () => {
 	const map = document.getElementById("map");
 	map.addEventListener("click", () => {
@@ -28,7 +27,7 @@ export { showContent };
 const btnTakePlace = () => {
 	const btnGo = document.querySelector(".btn-go");
 	const btnParked = document.querySelector(".btn-parked");
-	const btnLeaving = document.querySelector(".btn-leaving");
+	const btnLeaving = document.querySelector(".btn-leaving-two");
 
 	btnGo.addEventListener("click", () => {
 		btnGo.classList.remove("active-go-btn");
@@ -38,6 +37,8 @@ const btnTakePlace = () => {
 	btnParked.addEventListener("click", () => {
 		btnParked.classList.remove("active-parked-btn");
 		btnLeaving.classList.add("active-leaving-btn");
+		const overlay = document.querySelector(".overlay-before-leave");
+		overlay.classList.add("active-overlay");
 		const navigation = document.querySelector(".mapbox-directions-instructions.active-directions-instructions");
 		navigation.style.display = 'none';
 		fetch(`http://localhost:3000/update-available-places?id=${btnGo.dataset.id}&do=minus`)
@@ -55,6 +56,8 @@ const btnTakePlace = () => {
 
 	btnLeaving.addEventListener("click", () => {
 		btnLeaving.classList.remove("active-leaving-btn");
+		const overlay = document.querySelector(".overlay-before-leave");
+		overlay.classList.remove("active-overlay");
 		fetch(`http://localhost:3000/update-available-places?id=${btnGo.dataset.id}&do=plus`)
 			.then(response => response.json())
 			.then((data) => {
