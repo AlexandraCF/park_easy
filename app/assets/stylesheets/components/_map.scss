@@ -13,15 +13,32 @@
 .mapboxgl-ctrl-geocoder {
   width: 324px !important;
   background-color: white !important;
-  height: 45px !important;
+  height: 56px !important;
+  border-radius: 28px !important;
   input {
-  	font-size: 17px !important;
-  	height: 45px !important;
+    font-size: 20px !important;
+    position: absolute;
+    top: 7px;
+    left: 16px;
+    color: #1E3557 !important;
   }
 }
 
 .mapboxgl-ctrl-geocoder--icon-search {
-	// right: 12px !important;
-	left: 260px !important;
+	left: 252px !important;
+  top: 15px;
 }
 
+.mapboxgl-ctrl-geocoder--icon.mapboxgl-ctrl-geocoder--icon-search {
+  fill: white;
+  background-color: #467B9D;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  padding: 9px
+}
+
+
+.mapboxgl-ctrl mapboxgl-ctrl-group {
+
+}
