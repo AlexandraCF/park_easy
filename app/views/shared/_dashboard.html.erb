@@ -2,7 +2,6 @@
 	<div><%= image_tag "cancel.svg", class: "menu-close-toggler" %></div>
 	<div class="dashboard-container">
 	  <div class="intro-dashboard">
-	    <%#= image_tag "Alexandra.jpg", class: "avatar-bordered", alt: "avatar-bordered" %>
 	    <% if current_user.photo.key %>
 	    	<%= cl_image_tag current_user.photo.key, crop: :fill, class: "avatar-bordered" %>
 	    <% end %>
