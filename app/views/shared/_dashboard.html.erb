@@ -3,7 +3,7 @@
 	<div class="dashboard-container">
 	  <div class="intro-dashboard">
 	    <%#= image_tag "Alexandra.jpg", class: "avatar-bordered", alt: "avatar-bordered" %>
-	    <% if current_user.photo.key %>
+	    <% if current_user.photo.attached? %>
 	    	<%= cl_image_tag current_user.photo.key, crop: :fill, class: "avatar-bordered" %>
 	    <% end %>
 	    <h2><%= " #{current_user.first_name}"" " "#{current_user.last_name}" %></h2>
