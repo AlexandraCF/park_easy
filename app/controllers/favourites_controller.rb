@@ -1,5 +1,6 @@
 class FavouritesController < ApplicationController
-
+  skip_before_action :verify_authenticity_token, only: [:create]
+  
   def index
     @favourites = Favourite.all
   end
@@ -21,6 +22,7 @@ class FavouritesController < ApplicationController
         render :new
       end
   end
+  
   def destroy
     @favourite = Favourite.find(params[:id])
     @favourite.destroy
