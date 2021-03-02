@@ -160,7 +160,6 @@ const initMapbox = () => {
           routeSummary.classList.remove("active-leaving-btn");
         };
     })
-  
   });
 
 
