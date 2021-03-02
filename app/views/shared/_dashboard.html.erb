@@ -1,35 +1,42 @@
 <div class="card-test-collapse">
-	<div class="menu-close-toggler"><i class="fas fa-times"></i></div>
+	<div><%= image_tag "cancel.svg", class: "menu-close-toggler" %></div>
 	<div class="dashboard-container">
 	  <div class="intro-dashboard">
 	    <%#= image_tag "Alexandra.jpg", class: "avatar-bordered", alt: "avatar-bordered" %>
 	    <% if current_user.photo.key %>
 	    	<%= cl_image_tag current_user.photo.key, crop: :fill, class: "avatar-bordered" %>
 	    <% end %>
-	    <h2><%= " #{current_user.first_name}"" " "#{current_user.last_name}" %></h2>
+	    <h2 class="first-name-user-dashboard"><%= " #{current_user.first_name}"" " "#{current_user.last_name}" %></h2>
+	    <p class="email-user-dashboard"><%= current_user.email %></p>
 	    <p><%= current_user.username %></p>
 	  </div>
-	  <div class="email-dashboard">
-	    <p><%= current_user.email %></p>
-	  </div>
 	  <div class="home-dashboard">
-	    <p><i class="fas fa-home"></i>    <strong>Home</strong> :</p>
-	    <%= current_user.address %>
+	  	<div class="home-dashboard-top">
+	    	<p><strong>Home</strong></p>
+	    	<%= current_user.address %>
+	    </div>
+	    <i class="fas fa-pencil-alt"></i>
+	    <hr>
+	    <div class="home-dashboard-bottom">
+	    	<p>Modify personal details</p>
+	    </div>
+	    <i class="fas fa-long-arrow-alt-right"></i>
 	  </div>
 	  <div class="favorites-dashboard">
-		<p><i class="fas fa-bookmark" aria-hidden="true"></i> <strong>Favourites</strong></p>
-	      <%= link_to " + Add Favourites", new_favourite_path, class:"btn btn-favourite" %>
+		<strong>Favourites</strong>
+	  </div>
+	  <div class="add-favorites-dashboard"><i class="fas fa-plus"></i><%= link_to "Add a Favourite", new_favourite_path, class:"btn btn-favourite" %>
 	  </div>
 
 	  <div class="navigation">
 	  	<div class="wrapper">
-        <%= render 'shared/index'%>
-		  </div>
+        	<%= render 'shared/index'%>
+		</div>
+	    <%= link_to "Log out", destroy_user_session_path, class:"btn btn-logout", :method => :delete, id:"btn-logout-dashboard" %>
 	  </div>
 
-	  <div class="logout-dashboard">
-	    <%= link_to "Log out", destroy_user_session_path, class:"btn btn-logout", :method => :delete %>
-	  </div>
+	  <!-- <div class="logout-dashboard"> -->
+	  <!-- </div> -->
 	</div>
 	 
 	 <%# link to current_user.address , vers index + parametre pour current localisation %>
