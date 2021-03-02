@@ -1,4 +1,5 @@
 .menu-toggler {
+  color: #1E3557;
   font-size: 54px;
   border-radius: 50%;
   position: absolute;
@@ -13,14 +14,15 @@
   }
 }
 
-.menu-close-toggler {
-  color: #A8DADC;
+.menu-close-toggler{
+  fill: #A8DADC;
   font-size: 25px;
   position: absolute;
-  top: 10px;
-  right: 16px;
+  padding: 0px 12px;
   z-index: 3;
-  padding: 0px 12px;	
+  top: 25px;
+  right: 16px;
+  width: 50px;
 }
 
 .card-test-collapse {
