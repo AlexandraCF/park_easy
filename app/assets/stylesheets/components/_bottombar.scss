@@ -12,6 +12,10 @@ a.mapboxgl-ctrl-logo {
   display: none;
 }
 
+.directions-control.directions-control-inputs {
+  display:none;
+}
+
 .active-directions-instructions {
   position: absolute !important;
   z-index: 1000 !important;

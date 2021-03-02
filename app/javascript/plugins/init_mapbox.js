@@ -87,27 +87,28 @@ const initMapbox = () => {
 
     // Searchbar Location tool
     // fitMapToMarkers(map, markers);
-    map.addControl(new MapboxGeocoder({ accessToken: mapboxgl.accessToken,
+    const test = new MapboxGeocoder({ accessToken: mapboxgl.accessToken,
       language: "en",
       geocoder: {
         language: "en"
       },
-      mapboxgl: mapboxgl }));
+      mapboxgl: mapboxgl
+    });
+    //ok
+
+    map.addControl(test)
+    test.on('result', (e) => {
+      console.log(e.result)
+      const marker = new mapboxgl.Marker({ draggable: true, color: "red" })
+      .setLngLat(e.result.center)
+      .setPopup(new mapboxgl.Popup().setHTML(`<form class="simple_form new_favourite-2" id="new_favourite" novalidate="novalidate" action="/favourites" accept-charset="UTF-8" method="post"><input type="hidden" name="authenticity_token" value="vAhVWFFqSUOk4KQyv7vmL22LfGU3KRiNRsOlC9oqMSrQEkFb2FSZ+38pN5cjsm/65wO7jrKP3GvaOLIj4MY2sw=="><div class="login-form form-inputs"><div class="form-group string required favourite_address"><label class="string required" for="favourite_address">Place</label><input class="form-control string required" type="text" name="favourite[address]" value="${e.result.place_name}" id="favourite_address"></div></div><div class="form-actions"><input type="submit" name="commit" value="Add as favourite" class="btn btn-signup-signuppage" data-disable-with="Address added"></div</form>`))    
+      .addTo(map)
+    });
+
     // action of the btn geolocate
     map.addControl(geolocate);
 
-    //  Btn Clear All
-    // document.querySelector(".btn-clear").addEventListener("click", (event) => {
-    //   const btnClear = document.querySelector(".btn-clear");
-    //   btnClear.classList.add("active-clear-btn");
-    //   var directionsDisplay;
-    //     if(directionsDisplay != null) {
-    //       directionsDisplay.setMap(null);
-    //       directionsDisplay = null;
-    //       map.setZoom(8);
-    //       map.setCenter();
-    //     };
-    //   });
+
 
       // Current position as origin starting point
 
@@ -118,7 +119,7 @@ const initMapbox = () => {
       profile: 'mapbox/driving-traffic',
       controls: {
         profileSwitcher: false,
-        inputs: false,
+        inputs: true,
         instructions: true
       },
       alternatives: true,
@@ -135,6 +136,21 @@ const initMapbox = () => {
     );
     map.addControl(directions, 'bottom-left');
 
+     //  Btn Clear All
+    document.querySelector(".btn-clear").addEventListener("click", (event) => {
+      const btnClear = document.querySelector(".btn-clear");
+      btnClear.classList.add("active-clear-btn");
+      document.querySelector('.mapbox-directions-destination .geocoder-icon-close').click()
+        const btnGo = document.querySelector(".btn-go");
+        btnGo.classList.remove("active-go-btn");
+        const btnParked = document.querySelector(".btn-parked");
+        btnParked.classList.remove("active-parked-btn");
+        const btnPark = document.querySelector(".btn-park");
+        btnPark.classList.add("active-parked-btn");
+        // ReGeolocate User clicking twice stop geolocalization
+        geolocate.trigger();
+      });
+
     map.on('load', () => {
       const bounds = new mapboxgl.LngLatBounds();
         [{lat: 48.865487, lng: 2.382093}, {lat: 48.865083, lng: 2.382692}, {lat: 48.865603, lng: 2.384176}, {lat: 48.864839, lng: 2.385049}, {lat: 48.864037, lng: 2.383574}].forEach(marker => bounds.extend([ marker.lng, marker.lat ]))
@@ -144,7 +160,7 @@ const initMapbox = () => {
         const lat = e.coords.latitude
         const position = [lon, lat];
         console.log(position)
-        
+
         directions.setOrigin(position);
 
         console.log(markers);
@@ -175,8 +191,8 @@ const initMapbox = () => {
           const bounds = new mapboxgl.LngLatBounds();
         [{lng: 2.3789894, lat: 48.8656},{lat: marker.dataset.lat, lng: marker.dataset.lng},{lat: 48.865487, lng: 2.382093}, {lat: 48.865083, lng: 2.382692}, {lat: 48.865603, lng: 2.384176}, {lat: 48.864839, lng: 2.385049}, {lat: 48.864037, lng: 2.383574}].forEach(marker => bounds.extend([ marker.lng, marker.lat ]))
         map.fitBounds(bounds, { padding: 70, maxZoom: 16, duration: 0 });
-      
-      // Added by Javier 
+
+      // Added by Javier
         btnGo.classList.add("active-go-btn");
         btnGo.dataset.id = marker.dataset.id
         const routeSummary = document.querySelector(".mapbox-directions-route-summary");
