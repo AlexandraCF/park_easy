@@ -189,6 +189,10 @@ const initMapbox = () => {
     const btnParked = document.querySelector(".btn-parked");
     const btnPark = document.querySelector(".btn-park");
     console.log(btnPark);
+
+    if (document.querySelector('.mapbox-directions-destination .geocoder-icon-close')) {
+      document.querySelector('.mapbox-directions-destination .geocoder-icon-close').click();
+    }
      //  Btn Clear All
     document.querySelector(".btn-clear").addEventListener("click", (event) => {
       btnClear.classList.add("active-clear-btn");
