@@ -70,7 +70,17 @@ lots["records"].each do |lot|
 										 )
   spot.save(validate: false)
 end
-puts
+
+puts "Updating available_places of rue Crespin du Gast to 0"
+
+updated_addresses = ParkingSpot.where(address: "RUE CRESPIN DU GAST");
+
+updated_addresses.each do |address|
+	address.available_places = 0;
+	address.save
+end
+
+
 puts "Finished!"
 
 
