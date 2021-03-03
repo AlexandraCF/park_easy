@@ -1,6 +1,6 @@
 <div class="card-test-collapse">
 	<div><%= image_tag "cancel.svg", class: "menu-close-toggler" %></div>
-  <div><%= image_tag "settings.svg", class: "menu-open-settings" %></div>
+  	<div><%= image_tag "settings.svg", class: "menu-open-settings" %></div>
 	<div class="dashboard-container">
 	  <div class="intro-dashboard">
 
@@ -19,9 +19,9 @@
 	    <i class="fas fa-pencil-alt"></i>
 	    <hr>
 	    <div class="home-dashboard-bottom">
-	    	<p>Modify personal details</p>
+	    	<%= link_to  edit_user_registration_path do %><p>Modify personal details</p>
 	    </div>
-	    <i class="fas fa-long-arrow-alt-right"></i>
+	    <i class="fas fa-long-arrow-alt-right"></i><% end %>
 	  </div>
 	  <div class="favorites-dashboard">
 		<strong>Favourites</strong>
