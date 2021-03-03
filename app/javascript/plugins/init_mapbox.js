@@ -18,7 +18,7 @@ const addMarkersToMap = (map, markers) => {
   markers.forEach((marker) => {
     // Marker Info
     // const popup = new mapboxgl.Popup().setHTML(marker.infoWindow);
-    if (marker.available_spaces >= 4 && marker.available_spaces <= 8) {
+    if (marker.available_spaces >= 1 && marker.available_spaces <= 4) {
       const element = document.createElement('pin');
         element.className = 'marker';
         element.style.backgroundImage = `url('${marker.image_url}')`;
