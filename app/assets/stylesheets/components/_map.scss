@@ -11,10 +11,11 @@
 // Search bar
 
 .mapboxgl-ctrl-geocoder {
-  width: 324px !important;
+  width: 85vw !important;
   background-color: white !important;
   height: 56px !important;
   border-radius: 28px !important;
+  box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.2) !important;
   input {
     font-size: 20px !important;
     position: absolute;
@@ -33,10 +34,15 @@
   padding: 9px;
   position: absolute;
   top: 5px;
-  left: 243px;
+  left: 65vw !important;
   z-index: 1;
 }
 
+@media (min-width: 370px) and (max-width:410px) {
+  .mapboxgl-ctrl-geocoder--icon.mapboxgl-ctrl-geocoder--icon-search {
+    left: 63vw !important;
+  }
+}
 
 .mapboxgl-ctrl mapboxgl-ctrl-group {
 
