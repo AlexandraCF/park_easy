@@ -113,8 +113,10 @@ a.mapboxgl-ctrl-logo {
 
 .btn-park {
   display: inherit;
+  justify-content: center;
   color: #f1faee;
-  background-color: #457b9d;
+  background-color: #1D3557;
+  // background: linear-gradient(to right, #1D3557 50%, #467B9D 150%);
   text-align: center;
   text-decoration: none;
   font-weight: bold;
@@ -126,10 +128,11 @@ a.mapboxgl-ctrl-logo {
   bottom: 18px;
   right: 8%;
   left: 8%;
-  padding: 6px 10px 10px 10px;
+  padding: 6px 10px 6px 10px;
   border-radius: 10px;
+  box-shadow: 6px 6px 5px rgba(0, 0, 0, 0.45);
   &:hover {
-    box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.5);
+    // box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.5);
   }
 }
 
