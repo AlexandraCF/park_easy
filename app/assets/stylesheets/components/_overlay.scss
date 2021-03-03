@@ -17,6 +17,7 @@
 	text-align: center;
 	font-size: 38px;
 	font-weight: bold;
+    a {text-decoration: none !important;}
 }
 
 .btn-leaving-two {
@@ -28,7 +29,14 @@
   color: #F1F9EE;
   box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.1);
   justify-content: center;
+  text-decoration: none !important;
+    a {text-decoration: none !important;}
   &:hover {
   	box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.5);
+    text-decoration: none !important;
+    background-color: #F1F9EE;
+    color: #E63846;
+    border-color: #E63846;
+    transition: all 0.2s ease-out;
   }
 }
