@@ -176,6 +176,35 @@
   font-size:18px;
   font-weight: bold;
 }
+.btn-update-edit {
+	/*margin-top: -15px;*/
+    margin-right: 67px;
+    /* position: fixed; */
+    /* margin-top: 20px; */
+    text-align: center;
+    background-color: #a8dadc;
+    border-radius: 50px;
+    color: #1d3557;
+    width: 35%;
+    /* padding: 10px; */
+    font-size: 18px;
+    font-weight: bold;
+    height: 37px;
+}
+
+.btn-back-edit {
+	margin-top: -15px;
+	margin-left: 53px;
+    text-align: center;
+    background-color: #a6a6a6;
+    border-radius: 50px;
+    color: #1d3557;
+    width: 65%;
+    padding: 7px;
+    font-size: 18px;
+    font-weight: bold;
+    height: 37px;
+}
 
 .btn-back-favourites-2{
 	position: fixed;
