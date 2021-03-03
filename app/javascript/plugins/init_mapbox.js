@@ -60,7 +60,7 @@ const addMarkersToMap = (map, markers) => {
       positionOptions: {
         enableHighAccuracy: true
       },
-      trackUserLocation: true,
+      trackUserLocation: false,
       showAccuracyCircle: false
     });
 
@@ -188,7 +188,6 @@ const initMapbox = () => {
     const btnGo = document.querySelector(".btn-go");
     const btnParked = document.querySelector(".btn-parked");
     const btnPark = document.querySelector(".btn-park");
-    console.log(btnPark);
 
     if (document.querySelector('.mapbox-directions-destination .geocoder-icon-close')) {
       document.querySelector('.mapbox-directions-destination .geocoder-icon-close').click();
@@ -222,7 +221,7 @@ const initMapbox = () => {
         const lat = e.coords.latitude
         const position = [lon, lat];
 
-        //console.log(position)
+        console.log('geoloc');
 
 
 
