@@ -51,7 +51,7 @@ const addMarkersToMap = (map, markers) => {
   const fitMapToMarkers = (map, markers) => {
     const bounds = new mapboxgl.LngLatBounds();
     markers.forEach(marker => bounds.extend([ marker.lng, marker.lat ]));
-    map.fitBounds(bounds, { padding: 70, maxZoom: 15 });
+    map.fitBounds(bounds, { padding: 70, minZoom: 16, maxZoom: 21 });
   };
 
 
@@ -208,13 +208,16 @@ const initMapbox = () => {
       btnParked.classList.remove("active-parked-btn");
       btnPark.classList.remove("active-park-btn");
       btnPark.style.display = 'block';
+      const bounds = new mapboxgl.LngLatBounds();
+      [{lng: 2.3789894, lat: 48.8656},{lat: marker.dataset.lat, lng: marker.dataset.lng},{lat: 48.865487, lng: 2.382093}, {lat: 48.865083, lng: 2.382692}, {lat: 48.865603, lng: 2.384176}, {lat: 48.864839, lng: 2.385049}, {lat: 48.864037, lng: 2.383574}].forEach(marker => bounds.extend([ marker.lng, marker.lat ]))
+      map.fitBounds(bounds, { padding: 70, minZoom: 16, maxZoom: 21, duration: 0 });
     });
 
 
     map.on('load', () => {
       const bounds = new mapboxgl.LngLatBounds();
       [{lat: 48.865487, lng: 2.382093}, {lat: 48.865083, lng: 2.382692}, {lat: 48.865603, lng: 2.384176}, {lat: 48.864839, lng: 2.385049}, {lat: 48.864037, lng: 2.383574}].forEach(marker => bounds.extend([ marker.lng, marker.lat ]))
-      map.fitBounds(bounds, { padding: 70, maxZoom: 16, duration: 0 });
+      map.fitBounds(bounds, { padding: 70, minZoom: 16, maxZoom: 21, duration: 0 });
 
       geolocate.on('geolocate', (e) => {
         const lon = e.coords.longitude;
@@ -238,6 +241,9 @@ const initMapbox = () => {
             .then((data) =>  {
               directions.setDestination([data["longitude"], data["latitude"]]);
             });
+            const bounds = new mapboxgl.LngLatBounds();
+            [{lng: 2.3789894, lat: 48.8656},{lat: marker.dataset.lat, lng: marker.dataset.lng},{lat: 48.865487, lng: 2.382093}, {lat: 48.865083, lng: 2.382692}, {lat: 48.865603, lng: 2.384176}, {lat: 48.864839, lng: 2.385049}, {lat: 48.864037, lng: 2.383574}].forEach(marker => bounds.extend([ marker.lng, marker.lat ]))
+            map.fitBounds(bounds, { padding: 70, minZoom: 16, maxZoom: 21, duration: 0 });
         });
       });
 
@@ -252,7 +258,7 @@ const initMapbox = () => {
           // added by alexandra
           const bounds = new mapboxgl.LngLatBounds();
           [{lng: 2.3789894, lat: 48.8656},{lat: marker.dataset.lat, lng: marker.dataset.lng},{lat: 48.865487, lng: 2.382093}, {lat: 48.865083, lng: 2.382692}, {lat: 48.865603, lng: 2.384176}, {lat: 48.864839, lng: 2.385049}, {lat: 48.864037, lng: 2.383574}].forEach(marker => bounds.extend([ marker.lng, marker.lat ]))
-          map.fitBounds(bounds, { padding: 70, maxZoom: 16, duration: 0 });
+          map.fitBounds(bounds, { padding: 70, minZoom: 16, maxZoom: 21, duration: 0 });
 
           // Added by Javier
           btnGo.classList.add("active-go-btn");
