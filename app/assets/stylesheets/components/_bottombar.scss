@@ -24,8 +24,17 @@ a.mapboxgl-ctrl-logo {
   left: -9px !important;
   right: -64px !important;
   background-color: #1d3557 !important;
-  height: 80px !important;
+  height: 124px !important;
   display: inherit;
+}
+
+.mapbox-directions-step-maneuver{
+  font-size: 24px !important;
+  line-height: 150%;
+}
+
+.mapbox-directions-step-distance{
+  font-size: 20px !important;
 }
 
 .mapbox-directions-route-summary {
