@@ -65,3 +65,9 @@
 .mapboxgl-ctrl-geocoder--icon.mapboxgl-ctrl-geocoder--icon-close {
   display: none;
 }
+
+// marker
+
+.marker.active {
+  fill: red;
+}

@@ -32,7 +32,9 @@
     <div id="map"
        style="width: 100%; height: 100%;"
        data-markers="<%= @markers.to_json %>"
-       data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>">
+       data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>" 
+       data-active-marker="<%= image_url("map_marker_active.svg") %>"
+       data-fallback-marker="<%= image_url("map_marker_solid.svg") %>">
     </div>
   </body>
 </html>
