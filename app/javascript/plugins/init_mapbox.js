@@ -85,7 +85,7 @@ const addMarkersToMap = (map, markers) => {
     map.addControl(test);
     test.on('result', (e) => {
       // console.log(e.result)
-      const marker = new mapboxgl.Marker({ draggable: true, color: "red" })
+      const marker = new mapboxgl.Marker({ draggable: false, color: "red" })
       .setLngLat(e.result.center)
       .setPopup(new mapboxgl.Popup().setHTML(`<form class="simple_form new_favourite-2" id="new_favourite" novalidate="novalidate" action="/favourites" accept-charset="UTF-8" method="post"><div class="login-form form-inputs"><div class="form-group-2 string required favourite_address"><label class="string required" for="favourite_address">Place</label><input class="form-control string required" type="text" name="favourite[address]" value="${e.result.place_name}" id="favourite_address"></div></div><div class="form-actions"><input type="submit" name="commit" value="Add as favourite" id="add-favourite" class="btn btn-signup-signuppage" data-disable-with="Address added"></div</form>`))
       .addTo(map)
