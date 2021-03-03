@@ -7,7 +7,6 @@
   font-family: 'Open Sans', sans-serif;
 }
 
-
 // Search bar
 
 .mapboxgl-ctrl-geocoder {
@@ -22,6 +21,9 @@
     top: 7px;
     left: 16px;
     color: #1E3557 !important;
+    width: 87% !important;
+    // word-break: break-word !important;
+    // text-overflow: ellipsis !important;
   }
 }
 
@@ -49,5 +51,12 @@
 }
 
 .hide-markers-map{
+  display: none;
+}
+
+
+// x of search bar
+
+.mapboxgl-ctrl-geocoder--icon.mapboxgl-ctrl-geocoder--icon-close {
   display: none;
 }
