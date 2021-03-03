@@ -176,6 +176,10 @@ const initMapbox = () => {
   if (mapElement) {
     const map = buildMap(mapElement);
     const markers = JSON.parse(mapElement.dataset.markers);
+    const activeMarker = mapElement.dataset.activeMarker;
+    const fallbackMarker = mapElement.dataset.fallbackMarker;
+    console.log(fallbackMarker);
+    console.log(activeMarker);
     addMarkersToMap(map, markers);
 
     searchbar(map);
@@ -247,8 +251,14 @@ const initMapbox = () => {
 
       geolocate.trigger();
 
-      document.querySelectorAll(".marker").forEach(marker => {
+      const allMarkers = document.querySelectorAll(".marker");
+      allMarkers.forEach(marker => {
         marker.addEventListener("click", (event) => {
+          // Change color marker when clicking
+          allMarkers.forEach((marker) => {
+            marker.style.backgroundImage = `url(${fallbackMarker})`;
+          });
+          event.currentTarget.style.backgroundImage = `url(${activeMarker})`;
           // Current position as origin starting point
 
           directions.setDestination([marker.dataset.lng, marker.dataset.lat]);
