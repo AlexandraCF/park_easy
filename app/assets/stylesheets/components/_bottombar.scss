@@ -114,6 +114,46 @@ a.mapboxgl-ctrl-logo {
     }
 }
 
+.btn-parked::before {
+content: '';
+  border-radius: 1000px;
+  min-width: calc(300px + 12px);
+  min-height: calc(60px + 12px);
+  border: 6px solid #A8DADC;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  opacity: 0;
+  transition: all .3s ease-in-out 0s;
+}
+
+.btn-parked::after {
+  content: '';
+  width: 30px; height: 30px;
+  border-radius: 100%;
+  border: 6px solid #A8DADC;
+  position: absolute;
+  z-index: -1;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  animation: ring 2s infinite;
+  }
+
+@keyframes ring {
+  0% {
+    width: 30px;
+    height: 30px;
+    opacity: 1;
+  }
+  100% {
+    width: 200px;
+    height: 200px;
+    opacity: 0;
+  }
+}
+
 .active-parked-btn {
   display: inherit;
 }
@@ -129,7 +169,7 @@ a.mapboxgl-ctrl-logo {
   text-align: center;
   text-decoration: none;
   font-weight: bold;
-  font-size: 32px;
+  font-size: 1.8rem;
   width: 84%;
   height: 7%;
   position: absolute;
@@ -139,11 +179,12 @@ a.mapboxgl-ctrl-logo {
   left: 8%;
   padding: 6px 10px 6px 10px;
   border-radius: 10px;
-  box-shadow: 6px 6px 5px rgba(0, 0, 0, 0.45);
+  box-shadow: 6px 6px 5px rgba(0, 0, 0, 0.25);
   &:hover {
-    // box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.5);
+    box-shadow: 1px 1px 1px rgba(0, 0, 0, 0);
   }
 }
+
 
 .active-park-btn {
   display: none;
@@ -174,6 +215,7 @@ a.mapboxgl-ctrl-logo {
   box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.1);
   &:hover {
     box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.5);
+    transition: all 0.5s ease-out;
   }
 }
 
