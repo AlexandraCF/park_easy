@@ -22,9 +22,14 @@
     left: 16px;
     color: #1E3557 !important;
     width: 87% !important;
-    // word-break: break-word !important;
-    // text-overflow: ellipsis !important;
   }
+}
+
+// Suggestions
+
+.suggestions {
+  left: 17px !important;
+  width: 80% !important;
 }
 
 .mapboxgl-ctrl-geocoder--icon.mapboxgl-ctrl-geocoder--icon-search {
