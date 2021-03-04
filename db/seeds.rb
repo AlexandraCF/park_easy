@@ -80,6 +80,11 @@ updated_addresses.each do |address|
 	address.save
 end
 
+puts "Adding place to AVENUE JEAN AICARD"
+
+spot_aicard = ParkingSpot.where(address: "AVENUE JEAN AICARD").last;
+spot_aicard.available_places = 3
+spot_aicard.save
 
 puts "Finished!"
 
