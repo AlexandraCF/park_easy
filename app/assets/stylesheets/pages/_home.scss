@@ -16,6 +16,7 @@
 }
 
 .banner-text {
+  position: relative;
   margin-top: -39%;
 }
 
@@ -221,7 +222,7 @@ $transparent: hsla(0, 0%, 0%, 0);
 		position: relative;
 		width: $size * 4;
 		height: $size * .125;
-		top: $size * .125;
+		top: $size * .150;
 		background-color: $default-color;
 		clear: both;
 		
@@ -232,7 +233,7 @@ $transparent: hsla(0, 0%, 0%, 0);
 			float: left;
 			width: $size * .0625;
 			height: $size * .325;
-			top: -$size * .1325;
+			top: -$size * .1125;
 			content: "";
 			background-color: inherit;
 			border-radius: $size * .0625;
@@ -242,7 +243,7 @@ $transparent: hsla(0, 0%, 0%, 0);
 			float: right;
 			width: $size * .0625;
 			height: $size * .325;
-			top: -$size * .1325;
+			top: -$size * .1125;
 			content: "";
 			background-color: inherit;
 			border-radius: $size * .0625;
@@ -251,7 +252,7 @@ $transparent: hsla(0, 0%, 0%, 0);
 
 	.tires {
 		position: relative;
-		top: -$size * .125;
+		top: -$size * .105;
 		width: $size * 3;
 		height: $size;
 		overflow: auto;
@@ -289,6 +290,7 @@ $transparent: hsla(0, 0%, 0%, 0);
 .sedan {
 	@extend %car;
 	position: absolute;
+  top: 50px;
 	transform: translate(-$size * 7, $size * 2);
 	//transform: scaleX(1);
 	
@@ -316,6 +318,7 @@ $transparent: hsla(0, 0%, 0%, 0);
 
 .station-wagon {
 	@extend %car;
+  top: 60px;
 	position: absolute;
 	width: $size * 5;
 	
@@ -360,6 +363,7 @@ $transparent: hsla(0, 0%, 0%, 0);
 
 .coupe {
 	@extend %car;
+  top: 50px;
 	position: absolute;
 	width: $size * 5;
 	
