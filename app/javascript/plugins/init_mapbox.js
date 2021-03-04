@@ -84,7 +84,7 @@ const addMarkersToMap = (map, markers) => {
     map.addControl(test);
     test.on('result', (e) => {
       // console.log(e.result)
-      const marker = new mapboxgl.Marker({ draggable: false, color: "red" })
+      const marker = new mapboxgl.Marker({ draggable: false, color: "#23CE6B" })
       .setLngLat(e.result.center)
       .setPopup(new mapboxgl.Popup().setHTML(`<form class="simple_form new_favourite-2" id="new_favourite" novalidate="novalidate" action="/favourites" accept-charset="UTF-8" method="post"><div class="login-form form-inputs"><div class="form-group-2 string required favourite_address"><label class="string required" for="favourite_address">Place</label><input class="form-control string required" type="text" name="favourite[address]" value="${e.result.place_name}" id="favourite_address"></div></div><div class="form-actions"><input type="submit" name="commit" value="Add as favourite" id="add-favourite" class="btn btn-signup-signuppage" data-disable-with="Address added"></div</form>`))
       .addTo(map)
@@ -177,8 +177,8 @@ const initMapbox = () => {
     const markers = JSON.parse(mapElement.dataset.markers);
     const activeMarker = mapElement.dataset.activeMarker;
     const fallbackMarker = mapElement.dataset.fallbackMarker;
-    console.log(fallbackMarker);
-    console.log(activeMarker);
+    // console.log(fallbackMarker);
+    // console.log(activeMarker);
     addMarkersToMap(map, markers);
 
     searchbar(map);
@@ -200,6 +200,7 @@ const initMapbox = () => {
       btnClear.classList.add("active-clear-btn");
         const markersapp = document.querySelectorAll("pin");
         markersapp.forEach((marker) => {
+          marker.style.backgroundImage = `url(${fallbackMarker})`;
           marker.style.display = 'block';
           });
 
@@ -234,12 +235,14 @@ const initMapbox = () => {
         document.querySelector(".btn-park").addEventListener("click", (event) => {
           // btnPark.classList.add("active-park-btn");
           btnPark.style.display = 'none';
-
           btnGo.classList.add("active-go-btn");
           fetch(`/parking_spots/closespot?lon=${lon}&lat=${lat}`)
             .then(response => response.json())
             .then((data) =>  {
               directions.setDestination([data["longitude"], data["latitude"]]);
+              // Get marker and change color
+              const markerSelectByGopark = document.getElementById(`marker-${data.id}`)
+              markerSelectByGopark.style.backgroundImage = `url(${activeMarker})`;
               /* const bounds = new mapboxgl.LngLatBounds();
               [{lng: lon, lat: lat},{lat: data["latitude"], lng: data["longitude"]}].forEach(marker => bounds.extend([ marker.lng, marker.lat ]))
               map.fitBounds(bounds, { padding: 120, maxZoom: 21, duration: 0 }); */
