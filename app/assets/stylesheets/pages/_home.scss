@@ -20,6 +20,7 @@
 }
 
 .banner-1 {
+  overflow: hidden;
   width: 100%;
   position: absolute;
   z-index: 1000;
@@ -74,3 +75,401 @@
   color: #091b31;
 }
 
+$size: 1.5em;
+$default-size: 7em;
+$default-color: hsl(225, 43%, 48%);
+$sedan-color: hsl(209, 100%, 20%);
+$station-wagon-color: hsl(0, 40%, 99%);
+$coupe-color: hsl(0, 41%, 97%);
+$window-color: hsla(202, 80%, 89%, 0.62);
+$transparent: hsla(0, 0%, 0%, 0);
+
+@import url(https://fonts.googleapis.com/css?family=Amatic+SC:400,700);
+
+@mixin anim-chassis-bounce($duration: 2s) {
+	animation-duration: $duration;
+	animation-iteration-count: infinite;
+	animation-name: chassis-bounce;
+}
+
+@mixin anim-drive($duration, $delay) {
+	animation-duration: $duration;
+	animation-timing-function: linear;
+	animation-iteration-count: infinite;
+	animation-delay: $delay;
+	animation-name: drive;
+}
+
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	
+	&:before, &:after {
+		box-sizing: border-box;
+	}
+}
+
+
+
+
+
+%car {
+	width: $size * 4;
+	height: $size * 1.575;
+	
+	.windows {
+		position: relative;
+		width: $size * 2;
+		height: $size * .75;
+		left: -$size * .12;
+		background-color: $window-color;
+		border-top: $default-color solid $size * .125;
+		border-right: $default-color solid $size * .125;
+		border-left: $default-color solid $size * .125;
+		border-bottom: $default-color solid 0;
+		border-radius: $size * .125 $size * .125 0 0;
+		margin: 0 auto;
+		clear: both;
+		
+		@include anim-chassis-bounce();
+		
+		&:before {
+			position: relative;
+			float: left;
+			width: $size * .13;
+			height: $size * .75;
+			left: -$size * .25;
+			top: -$size * .12;
+			content: "";
+			background-color: $default-color;
+			border-radius: $size * .0625 $size * .0625 0 0;
+			transform: skewX(-25deg);
+		}
+		&:after {
+			position: relative;
+			float: right;
+			width: $size * .13;
+			height: $size * .75;
+			right: -$size * .32;
+			top: -$size * .12;
+			content: "";
+			background-color: $default-color;
+			border-radius: $size * .0625 $size * .0625 0 0;
+			transform: skewX(30deg);
+		}
+		
+		.sidewindowbar {
+			position: relative;
+			float: left;
+			width: $size * .12;
+			height: $size * .63;
+			left: $size * .63;
+			background-color: $window-color;
+			border-top: $default-color solid 0;
+			border-right: $default-color solid $size * .0625;
+			border-left: $default-color solid $size * .0625;
+			border-bottom: $default-color solid 0;
+		}
+	}
+
+	.body {
+		position: relative;
+		width: $size * 3.75;
+		height: $size * .75;
+		//background-color: $default-color;
+		border-radius: $size * .25 $size * .5 $size * .125 $size * .125;
+		margin: 0 auto;
+		margin-bottom: -$size * .625;
+		
+		@include anim-chassis-bounce();
+	}
+
+	.lights {
+		position: relative;
+		width: $size * 3.75;
+		clear: both;
+		
+		@include anim-chassis-bounce();
+		
+		&:before {
+			position: relative;
+			float: left;
+			width: $size * .125;
+			height: $size * .25;
+			left: $size * .125;
+			content: "";
+			background-color: hsl(0, 88%, 42%);
+			border: hsl(225, 30%, 80%) $size * .0125 solid;
+			border-radius: $size * .125 $size * .0625 $size * .0625 0
+		}
+		&:after {
+			position: relative;
+			float: right;
+			width: $size * .25;
+			height: $size * .25;
+			//right: 0;
+			content: "";
+			background-color: hsl(0, 88%, 100%);
+			border: hsl(225, 30%, 80%) $size * .0125 solid;
+			border-radius: ($size * .25) ($size * .5) ($size * .25) ($size * .5);
+		}
+	
+	}
+
+	.bumpers {
+		position: relative;
+		width: $size * 4;
+		height: $size * .125;
+		top: $size * .125;
+		background-color: $default-color;
+		clear: both;
+		
+		@include anim-chassis-bounce();
+		
+		&:before {
+			position: relative;
+			float: left;
+			width: $size * .0625;
+			height: $size * .325;
+			top: -$size * .1325;
+			content: "";
+			background-color: inherit;
+			border-radius: $size * .0625;
+		}
+		&:after {
+			position: relative;
+			float: right;
+			width: $size * .0625;
+			height: $size * .325;
+			top: -$size * .1325;
+			content: "";
+			background-color: inherit;
+			border-radius: $size * .0625;
+		}
+	}
+
+	.tires {
+		position: relative;
+		top: -$size * .125;
+		width: $size * 3;
+		height: $size;
+		overflow: auto;
+		margin: 0 auto;
+		
+		&:before {
+			position: relative;
+			float: left;
+			bottom: 0;
+			left: 0;
+			width: $size * .75;
+			height: $size * .75;
+			content: "";
+			background-color: hsl(225, 30%, 70%);
+			border: ($size * .125) solid hsl(0, 0%, 0%);
+			border-radius: 50%;
+		}
+		&:after {
+			position: relative;
+			float: right;
+			bottom: 0;
+			right: 0;
+			width: $size * .75;
+			height: $size * .75;
+			content: "";
+			background-color: hsl(225, 30%, 70%);
+			border: ($size * .125) solid hsl(0, 0%, 0%);
+			border-radius: 50%;
+		}
+	}
+}
+
+
+
+.sedan {
+	@extend %car;
+	position: absolute;
+	transform: translate(-$size * 7, $size * 2);
+	//transform: scaleX(1);
+	
+	@include anim-drive(17s, 3.81s);
+	
+	.windows {
+		border-color: $sedan-color;
+		&:before {
+			background-color: $sedan-color;
+		}
+		&:after {
+			background-color: $sedan-color;
+		}
+		.sidewindowbar {
+			border-color: $sedan-color;
+		}
+	}
+	.body {
+		background-color: $sedan-color;
+	}
+	.bumpers {
+		background-color: $sedan-color;
+	}
+}
+
+.station-wagon {
+	@extend %car;
+	position: absolute;
+	width: $size * 5;
+	
+	transform: translate(-$size * 7, $size * 2);
+	
+	@include anim-drive(15s, -1.1s);
+	
+	.windows {
+		width: $size * 3.25;
+		left: -$size * .5;
+		border-color: $station-wagon-color;
+		&:before {
+			background-color: $station-wagon-color;
+			transform: skewX(-15deg);
+		}
+		&:after {
+			background-color: $station-wagon-color;
+		}
+		.sidewindowbar {
+			width: $size * 1.25;
+			left: $size * .75;
+			border-color: $station-wagon-color;
+			border-width: 0 ($size * .13) 0 ($size * .13);
+		}
+	}
+	.body {
+		width: $size * 4.75;
+		background-color: $station-wagon-color;
+		border-radius: 0 $size * .5 $size * .125 $size * .125;
+	}
+	.lights {
+		width: $size * 4.75;
+	}
+	.bumpers {
+		width: $size * 5;
+		background-color: $station-wagon-color;
+	}
+	.tires {
+		width: $size * 4.5;
+	}
+}
+
+.coupe {
+	@extend %car;
+	position: absolute;
+	width: $size * 5;
+	
+	transform: translate(-$size * 7, $size * 2);
+	
+	@include anim-drive(21s, 5s);
+	
+	.windows {
+		width: $size * 2.25;
+		border-color: $coupe-color;
+		&:before {
+			width: $size * .25;
+			left: -$size * .5;
+			background-color: $coupe-color;
+			border-radius: $size * .063 $size * .063 0 0;
+			transform: skewX(-45deg);
+		}
+		&:after {
+			background-color: $coupe-color;
+		}
+		.sidewindowbar {
+			width: $size * .1;
+			left: $size;
+			border-color: $coupe-color;
+		}
+	}
+	.body {
+		width: $size * 4;
+		background-color: $coupe-color;
+		border-radius: 0 ($size * .5) ($size * .12) 0;
+		margin-bottom: -$size * .87;
+		&:before {
+			display: block;
+			position: relative;
+			width: $size * .75;
+			height: $size * .75;
+			left: -$size * .75;
+			content: "";
+			border-top: $transparent solid ($size * .37);
+			border-right: $coupe-color solid ($size * .37);
+			border-bottom: $coupe-color solid ($size * .37);
+			border-left: $transparent solid ($size * .37);
+			border-radius: 0 0 0 $size * .125;
+		}
+	}
+	.lights {
+		width: $size * 4.25;
+		left: $size * .12;
+		&:before {
+			width: $size * .25;
+			left: $size * .25;
+			border-radius: $size * .5 $size * .25 $size * .5 $size * .25;
+		}
+	}
+	.bumpers {
+		width: $size * 4.87;
+		left: -$size * .25;
+		border-radius: $size * .5 0 0 0;
+		background-color: $coupe-color;
+		&:before {
+			left: $size * .0625;
+			transform: rotate(45deg);
+		}
+		&:after {
+		}
+	}
+	.tires {
+		width: $size * 3.75;
+	}
+}
+
+@keyframes chassis-bounce {
+	0% {
+		transform: translate(0, 0);
+	}
+	25% {
+		transform: translate(-$size * .01, -$size * .052);
+	}
+	50% {
+		transform: translate(0, 0);
+	}
+	75% {
+		transform: translate($size * .01, -$size * .025);
+	}
+	100% {
+		transform: translate(0, 0);
+	}
+}
+
+@keyframes drive {
+	0% {
+		transform: translate(-$size * 7, $size * 1.1) scaleX(1);
+	}
+	20% {
+		transform: translate(100vw, $size * .9);
+	}
+	30% {
+		transform: translate(100vw, $size * .9) scaleX(-1);
+		//transform:;
+	}
+	80% {
+		transform: translate(100vw, $size * 3.1) scaleX(-1);
+		//transform: ;
+	}
+	90% {
+		transform: translate(-$size * 7, $size * 2.9) scaleX(-1);
+		//transform: 
+	}
+	100% {
+		transform: translate(-$size * 7, $size * .2) scaleX(1);
+	}
+	
+}
