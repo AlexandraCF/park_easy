@@ -1,6 +1,6 @@
 <div class="card-test-collapse">
 	<div><%= image_tag "cancel.svg", class: "menu-close-toggler" %></div>
-  	<div><%= image_tag "settings.svg", class: "menu-open-settings" %></div>
+  	<div><%= link_to   new_parking_spot_path do  %><%= image_tag "settings.svg", class: "menu-open-settings" %><% end %></div>
 	<div class="dashboard-container">
 	  <div class="intro-dashboard">
 
