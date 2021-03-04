@@ -1,0 +1,5 @@
+meta_product_name: "ParkEasy"
+meta_title: "ParkEasy - Find a parkingspot"
+meta_description: "A collaborative app that shows where there is empty places near your location."
+meta_image: "android-icon-192x192.png" # should exist in `app/assets/images/`
+twitter_account: "@ParkEasy"   # required for Twitter Cards
