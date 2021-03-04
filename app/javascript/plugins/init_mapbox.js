@@ -36,7 +36,6 @@ const addMarkersToMap = (map, markers) => {
         element.id = `marker-${marker.parking_spot_id}`;
         // console.log(element.id);
 
-
         new mapboxgl.Marker(element)
           .setLngLat([ marker.lng, marker.lat ])
           // .setDuration(marker.geolocate.duration)
