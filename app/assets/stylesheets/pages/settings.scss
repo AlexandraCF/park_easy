@@ -55,9 +55,13 @@
 
 
     /******************************************** LEFT CONTAINER *****************************************/
-    .left-container {}
+    .left-container {
+      height: 100%;
+      background-color: #1d3557;
+      z-index: 10;
+    }
       .menu-box {
-        height: 400px;
+        height: 100%;
       }
         .menu-box .titular {
         }
@@ -104,25 +108,7 @@
           .menu-box-tab:hover .menu-box-number {
             background: #e64c65;
           }
-      .donut-chart-block {
-        height: 434px;
-      }
-        .donut-chart-block .titular {
-          padding: 10px 0;
-        }
-        .donut-chart {
-          height: 270px;
-        }
-        /******************************************
-        DONUT-CHART by @kseso https://codepen.io/Kseso/pen/phiyL
-        ******************************************/
-          .donut-chart {
-            position: relative;
-            width: 200px;
-            height: 200px;
-            margin: 0 auto 2rem;
-            border-radius: 100%
-           }
+
           p.center-date {
             background: #394264;
             position: absolute;
